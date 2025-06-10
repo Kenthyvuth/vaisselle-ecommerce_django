@@ -1,0 +1,206 @@
+/* === RÉINITIALISATION DE BASE === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* === BODY === */
+  body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+    color: #333;
+  }
+  
+  /* === BARRE DE NAVIGATION === */
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #222;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    z-index: 1000;
+  }
+  
+  .navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .navbar .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .navbar .nav-links a:hover {
+    color: #f4a261;
+  }
+  
+  /* === ESPACEMENT APRÈS NAV === */
+  body {
+    padding-top: 80px;
+  }
+  
+  /* === SECTION PRODUITS VEDETTES === */
+  .featured-products {
+    padding: 2rem;
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .featured-products h2 {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+  }
+  
+  .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .product-card {
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 220px;
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  
+  .product-card h3 {
+    margin: 0.5rem 0;
+  }
+  
+  .product-card span {
+    display: block;
+    margin: 0.5rem 0;
+    font-weight: bold;
+    color: #e76f51;
+  }
+  
+  .product-card button {
+    background-color: #e76f51;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .product-card button:hover {
+    background-color: #d65a3d;
+  }
+  
+  /* === SECTION ACTUALITÉS === */
+  .news-section {
+    background-color: #fdfdfd;
+    padding: 2rem;
+  }
+  
+  .news-section h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  
+  .news article {
+    margin: 1rem 0;
+  }
+  
+  .news article h3 a {
+    color: #2a9d8f;
+    text-decoration: none;
+  }
+  
+  .news article p {
+    color: #555;
+  }
+  
+  /* === AVIS CLIENTS === */
+  .reviews {
+    padding: 2rem;
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .reviews h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .review-card {
+    background-color: #eee;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem auto;
+    max-width: 500px;
+  }
+  
+  /* === PIED DE PAGE === */
+  footer {
+    background-color: #222;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  footer a {
+    color: #f4a261;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+  }
+  
+  .social-links {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    .product-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .navbar .nav-links {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  

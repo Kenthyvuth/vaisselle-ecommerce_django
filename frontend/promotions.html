@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promotions - Classy Dishes</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #f3f3f3;
+      font-family: 'Georgia', serif;
+      padding-top: 80px;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #0e0e0e;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .navbar .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #d4af37;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .navbar .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .navbar .nav-links a {
+      color: #f3f3f3;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .navbar .nav-links a:hover {
+      color: #d4af37;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #d4af37;
+      margin: 2rem 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .promo-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .promo-card {
+      background-color: #2b2b2b;
+      padding: 1.5rem;
+      border-radius: 8px;
+      width: 260px;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+      text-align: center;
+    }
+
+    .promo-card img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .promo-card h3 {
+      color: #d4af37;
+      margin-bottom: 0.5rem;
+    }
+
+    .promo-card .old-price {
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    .promo-card .new-price {
+      font-weight: bold;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .promo-card button {
+      background-color: #d4af37;
+      color: #1a1a1a;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: #0e0e0e;
+      color: #aaa;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer a,
+    .social-links a {
+      color: #d4af37;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .social-links {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+  </style>
+</head>
+<script src="assets/js/navbar.js"></script>
+<body>
+  <!-- Contenu -->
+  <h2>Nos Promotions</h2>
+
+  <div class="promo-grid">
+    <div class="promo-card">
+      <img src="images/assiettes.jpg.avif" alt="Assiettes Promo">
+      <h3>Lot de 6 Assiettes</h3>
+      <span class="old-price">29,99 €</span>
+      <span class="new-price">24,99 €</span>
+      <button onclick="ajouterAuPanier('Lot de 6 Assiettes', 24.99)">Ajouter au panier</button>
+    </div>
+
+    <div class="promo-card">
+      <img src="images/couvert.jpg.avif" alt="Couverts Promo">
+      <h3>Set de 16 couverts</h3>
+      <span class="old-price">15,00 €</span>
+      <span class="new-price">11,90 €</span>
+      <button onclick="ajouterAuPanier('Set de 16 couverts', 11.90)">Ajouter au panier</button>
+    </div>
+  </div>
+
+  <!-- Script panier -->
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/footer.js"></script>
+</body>
+</html>

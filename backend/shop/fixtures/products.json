@@ -1,0 +1,98 @@
+[
+  {
+    "model": "shop.product",
+    "pk": 1,
+    "fields": {
+      "name": "Assiette BAHIA ARGILE VERT",
+      "description": "Assiette de présentation 29cm BAHIA ARGILE VERT, contraste entre émail peigné brillant et grès mat.",
+      "price": 14.90,
+      "stock": 50,
+      "image": "images/assiette.jpg.avif",
+      "category": ""
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 2,
+    "fields": {
+      "name": "Cocotte GOURMET ONYX",
+      "description": "Cocotte 140cl GOURMET ONYX en grès teinté masse, formes généreuses.",
+      "price": 11.90,
+      "stock": 30,
+      "image": "images/bol.jpg.avif",
+      "category": ""
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 3,
+    "fields": {
+      "name": "Bol CÉRAMIQUE BLEU NUIT",
+      "description": "Bol en céramique bleu nuit, idéal pour soupes et desserts.",
+      "price": 9.50,
+      "stock": 40,
+      "image": "images/bol.jpg.avif",
+      "category": ""
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 4,
+    "fields": {
+      "name": "Plat OVALE DORÉ",
+      "description": "Plat de service ovale avec finition dorée.",
+      "price": 29.90,
+      "stock": 20,
+      "image": "images/plat.jpg.avif",
+      "category": ""
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 5,
+    "fields": {
+      "name": "Verre NEWPORT TWIST",
+      "description": "Gobelet 25cl NEWPORT TWIST aux détails taillés.",
+      "price": 8.50,
+      "stock": 60,
+      "image": "images/verre.jpg.avif",
+      "category": ""
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 6,
+    "fields": {
+      "name": "Tasse EMPILEO VERT AMANDE",
+      "description": "Tasse thécappuccino 25cl EMPILEO VERT AMANDE pour le thé ou café.",
+      "price": 6.90,
+      "stock": 80,
+      "image": "images/tassecafé.jpg.avif",
+      "category": ""
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 7,
+    "fields": {
+      "name": "Lot de 6 Assiettes",
+      "description": "Lot promotionnel de 6 assiettes.",
+      "price": 24.99,
+      "stock": 15,
+      "image": "images/assiettes.jpg.avif",
+      "category": ""
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 8,
+    "fields": {
+      "name": "Set de 16 couverts",
+      "description": "Set promotionnel de 16 couverts.",
+      "price": 11.90,
+      "stock": 10,
+      "image": "images/couvert.jpg.avif",
+      "category": ""
+    }
+  }
+]

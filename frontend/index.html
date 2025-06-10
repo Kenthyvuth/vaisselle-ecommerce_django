@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classy Dishes</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #f3f3f3;
+      font-family: 'Georgia', serif;
+      padding-top: 80px;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #0e0e0e;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .navbar .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #d4af37;
+      font-family: 'Playfair Display', serif;
+    }
+    .navbar .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .navbar .nav-links a {
+      color: #f3f3f3;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .navbar .nav-links a:hover {
+      color: #d4af37;
+    }
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #d4af37;
+      margin: 2rem 0;
+      font-family: 'Playfair Display', serif;
+    }
+    .section {
+      padding: 2rem;
+      text-align: center;
+    }
+    .intro {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+    .cta-button {
+      margin-top: 2rem;
+      background-color: #d4af37;
+      color: #1a1a1a;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .cta-button:hover {
+      background-color: #bfa46f;
+    }
+    footer {
+      background-color: #0e0e0e;
+      color: #aaa;
+      padding: 2rem;
+      text-align: center;
+    }
+    footer a,
+    .social-links a {
+      color: #d4af37;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .social-links {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+  </style>
+</head>
+<script src="assets/js/navbar.js"></script>
+<body>
+  <section class="section">
+    <h2>Bienvenue chez Classy Dishes</h2>
+    <p class="intro">
+      Découvrez notre collection exclusive de vaisselle de luxe, mêlant élégance intemporelle, design raffiné et matériaux d’exception.
+      Sublimez vos repas avec l’art de la table signé <strong>Classy Dishes</strong>.
+    </p>
+    <a href="produits.html"><button class="cta-button">Voir nos collections</button></a>
+  </section>
+
+  <script>
+  // Dynamically show "Mon Compte" or "Déconnexion"
+  const navLinks = document.getElementById('nav-links');
+  const isLoggedIn = !!localStorage.getItem('access');
+
+  // Remove existing last nav item if present (for reloads)
+  if (navLinks.lastElementChild) navLinks.removeChild(navLinks.lastElementChild);
+
+  if (isLoggedIn) {
+    const logoutLi = document.createElement('li');
+    const logoutA = document.createElement('a');
+    logoutA.href = "#";
+    logoutA.id = "logout-link";
+    logoutA.textContent = "Déconnexion";
+    logoutLi.appendChild(logoutA);
+    navLinks.appendChild(logoutLi);
+
+    logoutA.onclick = function(e) {
+      e.preventDefault();
+      localStorage.removeItem('access');
+      localStorage.removeItem('refresh');
+      alert('Vous êtes déconnecté.');
+      window.location.href = "index.html";
+    };
+  } else {
+    const compteLi = document.createElement('li');
+    const compteA = document.createElement('a');
+    compteA.href = "compte.html";
+    compteA.textContent = "Mon Compte";
+    compteLi.appendChild(compteA);
+    navLinks.appendChild(compteLi);
+  }
+</script>
+<script src="assets/js/footer.js"></script>
+</body>
+</html>

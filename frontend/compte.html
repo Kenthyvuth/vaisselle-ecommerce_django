@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classy Dishes</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #f3f3f3;
+      font-family: 'Georgia', serif;
+      padding-top: 80px;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #0e0e0e;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .navbar .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #d4af37;
+      font-family: 'Playfair Display', serif;
+    }
+    .navbar .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .navbar .nav-links a {
+      color: #f3f3f3;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .navbar .nav-links a:hover {
+      color: #d4af37;
+    }
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #d4af37;
+      margin: 2rem 0;
+      font-family: 'Playfair Display', serif;
+    }
+    .auth-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+    }
+    .auth-form {
+      background-color: #2b2b2b;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+      width: 300px;
+    }
+    .auth-form h3 {
+      text-align: center;
+      color: #d4af37;
+      margin-bottom: 1rem;
+    }
+    .auth-form input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      background-color: #1a1a1a;
+      border: 1px solid #3e3e3e;
+      border-radius: 4px;
+      color: #f3f3f3;
+    }
+    .auth-form button {
+      background-color: #d4af37;
+      color: #1a1a1a;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: bold;
+    }
+    .auth-form button:hover {
+      background-color: #bfa46f;
+    }
+    footer {
+      background-color: #0e0e0e;
+      color: #aaa;
+      padding: 2rem;
+      text-align: center;
+    }
+    footer a,
+    .social-links a {
+      color: #d4af37;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .social-links {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+  </style>
+</head>
+<script src="assets/js/navbar.js"></script>
+<body>
+  <section>
+    <h2>Connexion / Inscription</h2>
+    <div class="auth-container">
+      <form class="auth-form" onsubmit="return fakeLogin(event)">
+        <h3>Connexion</h3>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Mot de passe" required>
+        <button type="submit">Se connecter</button>
+      </form>
+
+      <form class="auth-form" onsubmit="return fakeRegister(event)">
+        <h3>Inscription</h3>
+        <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Mot de passe" required>
+        <button type="submit">S'inscrire</button>
+      </form>
+    </div>
+  </section>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+  // LOGIN
+  document.querySelector('.auth-form').onsubmit = async function(event) {
+    event.preventDefault();
+    const email = this.querySelector('input[name="email"]').value;
+    const password = this.querySelector('input[name="password"]').value;
+
+    try {
+      const response = await fetch('http://localhost:8000/api/auth/login/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: email, password })
+      });
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('access', data.access);
+        localStorage.setItem('refresh', data.refresh);
+        alert('Connexion réussie !');
+        window.location.href = "index.html"; // Redirection vers la page d'accueil
+      } else {
+        alert('Identifiants invalides.');
+      }
+    } catch (e) {
+      alert('Erreur réseau.');
+    }
+    return false;
+  };
+
+  // REGISTER
+  document.querySelectorAll('.auth-form')[1].onsubmit = async function(event) {
+    event.preventDefault();
+    const username = this.querySelector('input[name="username"]').value;
+    const email = this.querySelector('input[name="email"]').value;
+    const password = this.querySelector('input[name="password"]').value;
+
+    try {
+      const response = await fetch('http://localhost:8000/api/auth/register/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: username, email, password })
+      });
+      if (response.ok) {
+        alert('Inscription réussie ! Connectez-vous.');
+      } else {
+        alert('Erreur lors de l\'inscription.');
+      }
+    } catch (e) {
+      alert('Erreur réseau.');
+    }
+    return false;
+  };
+  </script>
+  <script src="assets/js/footer.js"></script>
+</body>
+</html>
