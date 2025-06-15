@@ -53,7 +53,7 @@
             <strong>Articles :</strong>
             <ul>
               ${order.items.map(item => `
-                <li>${item.qty} x ${item.product} à ${parseFloat(item.price).toFixed(2)} €</li>
+                <li>${item.qty} x ${item.product_name} à ${parseFloat(item.price).toFixed(2)} €</li>
               `).join('')}
             </ul>
           </li>`;

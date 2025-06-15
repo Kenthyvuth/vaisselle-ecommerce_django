@@ -23,10 +23,11 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 class OrderItemSerializer(serializers.ModelSerializer):
+    product_name = serializers.CharField(source='product.name', read_only=True)
     product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
     class Meta:
         model = OrderItem
-        fields = ('product', 'qty', 'price')
+        fields = ('product', 'product_name', 'qty', 'price')
 
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True)
