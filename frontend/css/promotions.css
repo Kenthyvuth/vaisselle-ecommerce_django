@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Produits - Classy Dishes</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/produits.css">
-  <style>
     body {
       background-color: #1a1a1a;
       color: #f3f3f3;
       font-family: 'Georgia', serif;
       padding-top: 80px;
     }
+
     .navbar {
       position: fixed;
       top: 0;
@@ -26,26 +18,31 @@
       z-index: 1000;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
+
     .navbar .logo {
       font-size: 1.6rem;
       font-weight: bold;
       color: #d4af37;
       font-family: 'Playfair Display', serif;
     }
+
     .navbar .nav-links {
       list-style: none;
       display: flex;
       gap: 1.5rem;
     }
+
     .navbar .nav-links a {
       color: #f3f3f3;
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s;
     }
+
     .navbar .nav-links a:hover {
       color: #d4af37;
     }
+
     h2 {
       text-align: center;
       font-size: 2rem;
@@ -53,83 +50,78 @@
       margin: 2rem 0;
       font-family: 'Playfair Display', serif;
     }
-    .product-grid {
+
+    .promo-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 2rem;
-      padding: 0 2rem 4rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
     }
-    .product-card {
+
+    .promo-card {
       background-color: #2b2b2b;
-      border: 1px solid #3e3e3e;
+      padding: 1.5rem;
       border-radius: 8px;
-      width: 250px;
-      padding: 1rem;
+      width: 260px;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
       text-align: center;
-      transition: all 0.3s ease;
     }
-    .product-card:hover {
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
-    }
-    .product-card img {
+
+    .promo-card img {
       width: 100%;
-      border-radius: 4px;
+      border-radius: 6px;
+      margin-bottom: 1rem;
     }
-    .product-card h3,
-    .product-card span {
+
+    .promo-card h3 {
       color: #d4af37;
-      margin: 0.5rem 0;
+      margin-bottom: 0.5rem;
     }
-    .product-card p {
-      color: #ccc;
-      font-size: 0.95rem;
+
+    .promo-card .old-price {
+      text-decoration: line-through;
+      color: #888;
     }
-    .product-card button {
+
+    .promo-card .new-price {
+      font-weight: bold;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .promo-card button {
       background-color: #d4af37;
       color: #1a1a1a;
-      border: none;
       padding: 0.5rem 1rem;
+      border: none;
       border-radius: 4px;
       cursor: pointer;
       font-weight: bold;
     }
-    .product-card button:hover {
-      background-color: #bfa46f;
-    }
+
     footer {
       background-color: #0e0e0e;
       color: #aaa;
       padding: 2rem;
       text-align: center;
     }
+
     footer a,
     .social-links a {
       color: #d4af37;
       text-decoration: none;
     }
+
     footer a:hover {
       text-decoration: underline;
     }
+
     .social-links {
       margin-top: 1rem;
       display: flex;
       justify-content: center;
       gap: 1.5rem;
     }
-  </style>
-</head>
-<script src="assets/js/navbar.js"></script>
-<body>
-  <h2>Notre Collection</h2>
-  <section class="product-grid" id="produits-container">
-    <!-- Les produits seront injectés ici dynamiquement -->
-  </section>
-
-  <script src="assets/js/script.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', chargerProduits);
-  </script>
-  <script src="assets/js/footer.js"></script>
-</body>
-</html>

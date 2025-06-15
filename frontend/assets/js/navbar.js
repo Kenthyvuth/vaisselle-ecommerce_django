@@ -22,6 +22,14 @@ function injectNavbar() {
   if (navLinks.lastElementChild) navLinks.removeChild(navLinks.lastElementChild);
 
   if (isLoggedIn) {
+    // Ajoute le lien vers le profil AVANT le bouton Déconnexion
+    const profilLi = document.createElement('li');
+    const profilA = document.createElement('a');
+    profilA.href = "profil.html";
+    profilA.textContent = "Profil";
+    profilLi.appendChild(profilA);
+    navLinks.appendChild(profilLi);
+
     const logoutLi = document.createElement('li');
     const logoutA = document.createElement('a');
     logoutA.href = "#";

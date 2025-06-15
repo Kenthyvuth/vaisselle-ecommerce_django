@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Profil utilisateur - Classy Dishes</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/profil.css">
+</head>
+<script src="assets/js/navbar.js"></script>
+<body>
+  <section>
+    <h2>Mon Profil</h2>
+    <div id="user-info" style="margin-bottom:2rem;"></div>
+    <h3>Mes commandes</h3>
+    <div id="orders"></div>
+  </section>
+  <script>
+    async function chargerProfil() {
+      const token = localStorage.getItem('access');
+      if (!token) {
+        alert("Vous devez être connecté pour accéder à cette page.");
+        window.location.href = "compte.html";
+        return;
+      }
+      // Récupérer infos utilisateur
+      const userResp = await fetch('http://localhost:8000/api/auth/me/', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      if (!userResp.ok) {
+        alert("Session expirée. Veuillez vous reconnecter.");
+        window.location.href = "compte.html";
+        return;
+      }
+      const user = await userResp.json();
+      document.getElementById('user-info').innerHTML = `
+        <strong>Nom d'utilisateur :</strong> ${user.username}<br>
+        <strong>Email :</strong> ${user.email}
+      `;
+
+      // Récupérer commandes
+      const ordersResp = await fetch('http://localhost:8000/api/commandes/?user=' + user.id, {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      const orders = await ordersResp.json();
+      if (orders.length === 0) {
+        document.getElementById('orders').innerHTML = "<em>Aucune commande trouvée.</em>";
+      } else {
+        let html = '<ul style="list-style:none;padding:0;">';
+        orders.forEach(order => {
+          html += `<li style="margin-bottom:1.5rem;border-bottom:1px solid #ccc;padding-bottom:1rem;">
+            <strong>Commande #${order.id}</strong> du ${new Date(order.created_at).toLocaleDateString()}<br>
+            <strong>Total :</strong> ${parseFloat(order.total).toFixed(2)} €<br>
+            <strong>Articles :</strong>
+            <ul>
+              ${order.items.map(item => `
+                <li>${item.qty} x ${item.product} à ${parseFloat(item.price).toFixed(2)} €</li>
+              `).join('')}
+            </ul>
+          </li>`;
+        });
+        html += '</ul>';
+        document.getElementById('orders').innerHTML = html;
+      }
+    }
+    document.addEventListener('DOMContentLoaded', chargerProfil);
+  </script>
+  <script src="assets/js/footer.js"></script>
+</body>
+</html>
