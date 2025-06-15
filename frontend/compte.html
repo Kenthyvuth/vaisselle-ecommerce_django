@@ -122,7 +122,7 @@
     <div class="auth-container">
       <form class="auth-form" onsubmit="return fakeLogin(event)">
         <h3>Connexion</h3>
-        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="username" placeholder="Nom d'utilisateur" required>
         <input type="password" name="password" placeholder="Mot de passe" required>
         <button type="submit">Se connecter</button>
       </form>
@@ -142,14 +142,14 @@
   // LOGIN
   document.querySelector('.auth-form').onsubmit = async function(event) {
     event.preventDefault();
-    const email = this.querySelector('input[name="email"]').value;
+    const username = this.querySelector('input[name="username"]').value;
     const password = this.querySelector('input[name="password"]').value;
 
     try {
       const response = await fetch('http://localhost:8000/api/auth/login/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: email, password })
+        body: JSON.stringify({ username: username, password })
       });
       if (response.ok) {
         const data = await response.json();

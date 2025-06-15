@@ -31,6 +31,10 @@ function injectNavbar() {
     navLinks.appendChild(logoutLi);
 
     logoutA.onclick = function(e) {
+      if (!confirm("Êtes-vous sûr de vouloir vous déconnecter ?")) {
+        e.preventDefault();
+        return;
+      }
       e.preventDefault();
       localStorage.removeItem('access');
       localStorage.removeItem('refresh');
