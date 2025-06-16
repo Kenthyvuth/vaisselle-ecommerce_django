@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Product, Order, OrderItem, Contact
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'stock', 'category')
+    list_display = ('name', 'price', 'promo_price', 'stock', 'category')
     search_fields = ('name', 'category')
 
 class OrderItemAdmin(admin.ModelAdmin):
