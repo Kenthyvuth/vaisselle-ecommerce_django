@@ -9,29 +9,15 @@
 </head>
 <script src="assets/js/navbar.js"></script>
 <body>
-  <!-- Contenu -->
   <h2>Nos Promotions</h2>
-
-  <div class="promo-grid">
-    <div class="promo-card">
-      <img src="images/assiettes.jpg.avif" alt="Assiettes Promo">
-      <h3>Lot de 6 Assiettes</h3>
-      <span class="old-price">29,99 €</span>
-      <span class="new-price">24,99 €</span>
-      <button onclick="ajouterAuPanier('Lot de 6 Assiettes', 24.99)">Ajouter au panier</button>
-    </div>
-
-    <div class="promo-card">
-      <img src="images/couvert.jpg.avif" alt="Couverts Promo">
-      <h3>Set de 16 couverts</h3>
-      <span class="old-price">15,00 €</span>
-      <span class="new-price">11,90 €</span>
-      <button onclick="ajouterAuPanier('Set de 16 couverts', 11.90)">Ajouter au panier</button>
-    </div>
+  <div class="promo-grid" id="promos-container">
+    <!-- Les produits en promotion seront injectés ici dynamiquement -->
   </div>
 
-  <!-- Script panier -->
   <script src="assets/js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', chargerPromotions);
+  </script>
   <script src="assets/js/footer.js"></script>
 </body>
 </html>

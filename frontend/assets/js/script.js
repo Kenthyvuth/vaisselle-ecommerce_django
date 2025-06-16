@@ -139,18 +139,39 @@ async function chargerProduits() {
   const produits = await response.json();
   const container = document.getElementById('produits-container');
   container.innerHTML = '';
-  produits.forEach(produit => {
-    const div = document.createElement('div');
-    div.className = 'product-card';
-    div.innerHTML = `
-      <img src="${produit.image}" alt="${produit.name}">
-      <h3>${produit.name}</h3>
-      <p>${produit.description}</p>
-      <span>${parseFloat(produit.price).toFixed(2)} €</span>
-      <button onclick="ajouterAuPanier('${produit.name.replace(/'/g, "\\'")}', ${produit.price}, ${produit.id})">Ajouter au panier</button>
-    `;
-    container.appendChild(div);
-  });
+  produits.filter(p => p.promo_price == null && p.promo_price == undefined)
+    .forEach(produit => {
+      const div = document.createElement('div');
+      div.className = 'product-card';
+      div.innerHTML = `
+        <img src="${produit.image}" alt="${produit.name}">
+        <h3>${produit.name}</h3>
+        <p>${produit.description}</p>
+        <span>${parseFloat(produit.price).toFixed(2)} €</span>
+        <button onclick="ajouterAuPanier('${produit.name.replace(/'/g, "\\'")}', ${produit.price}, ${produit.id})">Ajouter au panier</button>
+      `;
+      container.appendChild(div);
+    });
+}
+
+async function chargerPromotions() {
+  const response = await fetch('http://localhost:8000/api/produits/');
+  const produits = await response.json();
+  const container = document.getElementById('promos-container');
+  container.innerHTML = '';
+  produits.filter(p => p.promo_price !== null && p.promo_price !== undefined)
+    .forEach(produit => {
+      const div = document.createElement('div');
+      div.className = 'promo-card';
+      div.innerHTML = `
+            <img src="${produit.image}" alt="${produit.name}">
+            <h3>${produit.name}</h3>
+            <span class="old-price">${parseFloat(produit.price).toFixed(2)} €</span>
+            <span class="new-price">${parseFloat(produit.promo_price).toFixed(2)} €</span>
+            <button onclick="ajouterAuPanier('${produit.name.replace(/'/g, "\\'")}', ${produit.promo_price}, ${produit.id})">Ajouter au panier</button>
+          `;
+      container.appendChild(div);
+    });
 }
 
 // Rediriger vers la page de commande
