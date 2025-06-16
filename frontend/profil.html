@@ -42,13 +42,15 @@
         headers: { 'Authorization': 'Bearer ' + token }
       });
       const orders = await ordersResp.json();
+      // Trie du plus récent au plus ancien
+      orders.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
       if (orders.length === 0) {
         document.getElementById('orders').innerHTML = "<em>Aucune commande trouvée.</em>";
       } else {
         let html = '<ul style="list-style:none;padding:0;">';
         orders.forEach(order => {
           html += `<li style="margin-bottom:1.5rem;border-bottom:1px solid #ccc;padding-bottom:1rem;">
-            <strong>Commande #${order.id}</strong> du ${new Date(order.created_at).toLocaleDateString()}<br>
+            <strong>Commande #${order.id}</strong> du ${new Date(order.created_at).toLocaleDateString()} à ${new Date(order.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}<br>
             <strong>Total :</strong> ${parseFloat(order.total).toFixed(2)} €<br>
             <strong>Articles :</strong>
             <ul>
