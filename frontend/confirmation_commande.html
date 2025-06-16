@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirmation de commande - Classy Dishes</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/confirmation_commande.css">
+</head>
+<script src="assets/js/navbar.js"></script>
+<body>
+  <section class="confirmation-container">
+    <h2>Merci pour votre commande !</h2>
+    <div id="confirmation-message"></div>
+    <h3>Récapitulatif de votre commande</h3>
+    <div id="recapitulatif"></div>
+    <a href="index.html" class="btn-retour">Retour à l'accueil</a>
+  </section>
+  <script>
+    function afficherConfirmation() {
+      const recap = JSON.parse(localStorage.getItem('confirmation_commande') || '{}');
+      if (!recap || !recap.items) {
+        document.getElementById('confirmation-message').innerHTML = "<p>Impossible d'afficher la commande.</p>";
+        return;
+      }
+      document.getElementById('confirmation-message').innerHTML = `
+        <div class="user-info">
+          <strong>Nom :</strong> ${recap.nom || ''} ${recap.prenom || ''}<br>
+          <strong>Adresse :</strong> ${recap.adresse || ''}, ${recap.cp || ''} ${recap.ville || ''}, ${recap.pays || ''}
+        </div>
+      `;
+      let html = `<table class="recap-table">
+        <thead>
+          <tr>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Prix unitaire</th>
+            <th>Sous-total</th>
+          </tr>
+        </thead>
+        <tbody>
+      `;
+      recap.items.forEach(item => {
+        html += `
+          <tr>
+            <td>${item.product_name || item.nom || 'Produit'}</td>
+            <td>${item.qty || 1}</td>
+            <td>${parseFloat(item.price).toFixed(2)} €</td>
+            <td>${(parseFloat(item.price) * (item.qty || 1)).toFixed(2)} €</td>
+          </tr>
+        `;
+      });
+      html += `
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" style="text-align:right;"><strong>Total :</strong></td>
+            <td><strong>${parseFloat(recap.total).toFixed(2)} €</strong></td>
+          </tr>
+        </tfoot>
+      </table>`;
+      document.getElementById('recapitulatif').innerHTML = html;
+      // Nettoyage du localStorage si tu veux
+      // localStorage.removeItem('confirmation_commande');
+    }
+    document.addEventListener('DOMContentLoaded', afficherConfirmation);
+  </script>
+  <script src="assets/js/footer.js"></script>
+</body>
+</html>

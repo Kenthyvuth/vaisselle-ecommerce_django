@@ -1,0 +1,90 @@
+body {
+  background-color: #1a1a1a;
+  color: #f3f3f3;
+  font-family: 'Georgia', serif;
+  padding-top: 80px;
+}
+
+.confirmation-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: #232323;
+  border-radius: 10px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 0 20px rgba(212,175,55,0.10);
+}
+
+h2 {
+  color: #d4af37;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-family: 'Playfair Display', serif;
+}
+
+h3 {
+  color: #d4af37;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.user-info {
+  background: #2b2b2b;
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.08rem;
+}
+
+.recap-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  background: #232323;
+}
+
+.recap-table th, .recap-table td {
+  border: 1px solid #444;
+  padding: 0.7rem 0.5rem;
+  text-align: center;
+}
+
+.recap-table th {
+  background: #1a1a1a;
+  color: #d4af37;
+  font-weight: bold;
+}
+
+.recap-table tfoot td {
+  background: #232323;
+  color: #d4af37;
+  font-size: 1.1rem;
+}
+
+.btn-retour {
+  display: block;
+  width: fit-content;
+  margin: 2rem auto 0 auto;
+  background: #d4af37;
+  color: #232323;
+  padding: 0.7rem 2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btn-retour:hover {
+  background: #bfa133;
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .confirmation-container {
+    padding: 1rem 0.5rem;
+  }
+  .recap-table th, .recap-table td {
+    padding: 0.4rem 0.2rem;
+    font-size: 0.95rem;
+  }
+}

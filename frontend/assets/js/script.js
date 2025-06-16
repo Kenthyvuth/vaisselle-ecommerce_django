@@ -55,7 +55,7 @@ function afficherPanier() {
   resume.className = "cart-summary";
   resume.innerHTML = `
     <p>Total : <strong>${total.toFixed(2)} €</strong></p>
-    <button class="checkout-btn" onclick="validerCommande()">Valider la commande</button>
+    <button class="checkout-btn" onclick="redirigerCommande()">Valider la commande</button>
   `;
   container.appendChild(resume);
 }
@@ -153,5 +153,13 @@ async function chargerProduits() {
   });
 }
 
-// À appeler au chargement de la page panier
-// afficherPanier();
+// Rediriger vers la page de commande
+function redirigerCommande() {
+  const token = localStorage.getItem('access');
+  if (!token) {
+    alert('Vous devez être connecté pour commander.');
+    window.location.href = "compte.html";
+    return;
+  }
+  window.location.href = "commande_details.html";
+}

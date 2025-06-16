@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Finaliser ma commande</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/panier.css">
+</head>
+<script src="assets/js/navbar.js"></script>
+<body>
+  <div id="spinner-overlay" style="display:none;">
+    <div class="spinner"></div>
+  </div>
+  <section class="cart-container">
+    <h2>Informations de livraison</h2>
+    <form id="commande-form">
+      <label for="prenom">Prénom :</label>
+      <input type="text" id="prenom" name="prenom" required>
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" name="nom" required>
+      <label for="adresse">Adresse :</label>
+      <input type="text" id="adresse" name="adresse" required>
+      <label for="ville">Ville :</label>
+      <input type="text" id="ville" name="ville" required>
+      <label for="cp">Code postal :</label>
+      <input type="text" id="cp" name="cp" required>
+      <label for="pays">Pays :</label>
+      <input type="text" id="pays" name="pays" required>
+
+      <h3>Coordonnées bancaires</h3>
+      <label for="cb">Numéro de carte :</label>
+      <input type="text" id="cb" name="cb" maxlength="19" required>
+      <label for="exp">Date d'expiration :</label>
+      <input type="text" id="exp" name="exp" placeholder="MM/AA" maxlength="5" required>
+      <label for="cvv">CVV :</label>
+      <input type="text" id="cvv" name="cvv" maxlength="4" required>
+
+      <button type="submit" class="checkout-btn">Valider</button>
+    </form>
+  </section>
+  <script>
+    // Affiche le panier en résumé sur cette page (optionnel)
+    // ...
+
+    document.getElementById('commande-form').onsubmit = async function(e) {
+      e.preventDefault();
+      // Affiche le spinner
+      document.getElementById('spinner-overlay').style.display = 'flex';
+
+      // Attend 2 secondes
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      const token = localStorage.getItem('access');
+      if (!token) {
+        alert("Vous devez être connecté.");
+        window.location.href = "compte.html";
+        return;
+      }
+      // Récupère les infos du formulaire
+      const prenom = document.getElementById('prenom').value;
+      const nom = document.getElementById('nom').value;
+      const adresse = document.getElementById('adresse').value;
+      const ville = document.getElementById('ville').value;
+      const cp = document.getElementById('cp').value;
+      const pays = document.getElementById('pays').value;
+
+      // Récupère le panier
+      const panier = JSON.parse(localStorage.getItem('panier') || "[]");
+      if (panier.length === 0) {
+        alert("Votre panier est vide.");
+        window.location.href = "panier.html";
+        return;
+      }
+      // Prépare les items pour l'API
+      const items = panier.map(item => ({
+        product: item.id,
+        qty: item.quantite ? item.quantite : 1,
+        price: parseFloat(item.prix)
+      }));
+      const total = items.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+      // Récupère l'ID utilisateur
+      let userId = null;
+      try {
+        const userResp = await fetch('http://localhost:8000/api/auth/me/', {
+          headers: { 'Authorization': 'Bearer ' + token }
+        });
+        if (userResp.ok) {
+          const userData = await userResp.json();
+          userId = userData.id;
+        } else {
+          alert("Impossible de récupérer votre profil.");
+          return;
+        }
+      } catch (e) {
+        alert("Erreur réseau.");
+        return;
+      }
+
+      // Envoie la commande au backend (ajoute les champs personnalisés si le modèle Order les contient)
+      try {
+        const response = await fetch('http://localhost:8000/api/commandes/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+          },
+          body: JSON.stringify({
+            user: userId,
+            total: total,
+            items: items,
+            first_name: prenom,
+            last_name: nom,
+            address: adresse,
+            city: ville,
+            zip_code: cp,
+            country: pays
+          })
+        });
+        if (response.ok) {
+          // Nettoie le panier
+          localStorage.removeItem('panier');
+          // Stocke le récapitulatif pour la page de confirmation
+          const recap = {
+            prenom, nom, adresse, ville, cp, pays, total, items
+          };
+          localStorage.setItem('confirmation_commande', JSON.stringify(recap));
+          window.location.href = "confirmation_commande.html";
+        } else {
+          const err = await response.json();
+          alert("Erreur lors de la commande : " + JSON.stringify(err));
+        }
+      } catch (e) {
+        alert("Erreur réseau.");
+      } finally {
+        document.getElementById('spinner-overlay').style.display = 'none';
+      }
+    };
+  </script>
+  <script src="assets/js/footer.js"></script>
+</body>
+</html>
