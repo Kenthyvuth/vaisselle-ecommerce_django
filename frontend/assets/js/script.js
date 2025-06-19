@@ -1,13 +1,11 @@
-// Utilise le panier côté client, mais envoie la commande au backend Django
-
 let panier = [];
 
-// Charger le panier depuis le backend ou localStorage (ici, local pour démo)
+// Charger le panier depuis localStorage
 function chargerPanier() {
   panier = JSON.parse(localStorage.getItem("panier")) || [];
 }
 
-// Sauvegarder le panier localement
+// Sauvegarder le panier dans localStorage
 function sauvegarderPanier() {
   localStorage.setItem("panier", JSON.stringify(panier));
 }
@@ -20,12 +18,26 @@ function ajouterAuPanier(nom, prix, idProduit) {
   alert(`${nom} ajouté au panier !`);
 }
 
-// Supprimer un produit du panier
-function supprimerDuPanier(index) {
+// Supprimer une seule occurrence d'un produit
+function supprimerUneUnite(idProduit) {
   chargerPanier();
-  panier.splice(index, 1);
-  sauvegarderPanier();
-  window.location.reload();
+  const index = panier.findIndex(item => item.id === idProduit);
+  if (index !== -1) {
+    panier.splice(index, 1);
+    sauvegarderPanier();
+    afficherPanier();
+  }
+}
+
+// Ajouter une unité de plus depuis le panier
+function ajouterUneUnite(idProduit) {
+  chargerPanier();
+  const item = panier.find(p => p.id === idProduit);
+  if (item) {
+    panier.push({ ...item });
+    sauvegarderPanier();
+    afficherPanier();
+  }
 }
 
 // Afficher le panier
@@ -40,13 +52,29 @@ function afficherPanier() {
     return;
   }
 
-  panier.forEach((article, index) => {
-    total += parseFloat(article.prix);
+  const panierRegroupe = {};
+  panier.forEach(article => {
+    if (panierRegroupe[article.id]) {
+      panierRegroupe[article.id].quantite++;
+    } else {
+      panierRegroupe[article.id] = { ...article, quantite: 1 };
+    }
+  });
+
+  Object.values(panierRegroupe).forEach(article => {
+    const sousTotal = article.prix * article.quantite;
+    total += sousTotal;
+
     const div = document.createElement("div");
     div.className = "cart-item";
     div.innerHTML = `
       <h4>${article.nom}</h4>
-      <p>${parseFloat(article.prix).toFixed(2)} € <button onclick="supprimerDuPanier(${index})">Supprimer</button></p>
+      <p>
+        ${sousTotal.toFixed(2)} € 
+        <button onclick="supprimerUneUnite(${article.id})">-</button>
+        <span>x${article.quantite}</span>
+        <button onclick="ajouterUneUnite(${article.id})">+</button>
+      </p>
     `;
     container.appendChild(div);
   });
@@ -75,7 +103,7 @@ async function validerCommande() {
     return;
   }
 
-  // 1. Get user ID from backend
+  // Obtenir l'ID utilisateur
   let userId = null;
   try {
     const userResp = await fetch('http://localhost:8000/api/auth/me/', {
@@ -93,15 +121,24 @@ async function validerCommande() {
     return;
   }
 
-  // 2. Prepare items and total
-  const items = panier.map(item => ({
-    product: item.id, // <-- must be 'product'
-    qty: item.quantite ? item.quantite : 1,
-    price: parseFloat(item.prix)
-  }));
-  const total = items.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  // Regrouper les articles pour l’envoi
+  const articlesRegroupes = {};
+  panier.forEach(item => {
+    if (articlesRegroupes[item.id]) {
+      articlesRegroupes[item.id].qty++;
+    } else {
+      articlesRegroupes[item.id] = {
+        product: item.id,
+        qty: 1,
+        price: parseFloat(item.prix)
+      };
+    }
+  });
 
-  // 3. Send order
+  const items = Object.values(articlesRegroupes);
+  const total = items.reduce((sum, item) => sum + item.qty * item.price, 0);
+
+  // Envoyer la commande
   try {
     const response = await fetch('http://localhost:8000/api/commandes/', {
       method: 'POST',
@@ -133,13 +170,13 @@ async function validerCommande() {
   }
 }
 
-// Charger et afficher les produits depuis le backend
+// Charger les produits
 async function chargerProduits() {
   const response = await fetch('http://localhost:8000/api/produits/');
   const produits = await response.json();
   const container = document.getElementById('produits-container');
   container.innerHTML = '';
-  produits.filter(p => p.promo_price == null && p.promo_price == undefined)
+  produits.filter(p => p.promo_price == null || p.promo_price == undefined)
     .forEach(produit => {
       const div = document.createElement('div');
       div.className = 'product-card';
@@ -154,6 +191,7 @@ async function chargerProduits() {
     });
 }
 
+// Charger les promotions
 async function chargerPromotions() {
   const response = await fetch('http://localhost:8000/api/produits/');
   const produits = await response.json();
@@ -164,17 +202,17 @@ async function chargerPromotions() {
       const div = document.createElement('div');
       div.className = 'promo-card';
       div.innerHTML = `
-            <img src="${produit.image}" alt="${produit.name}">
-            <h3>${produit.name}</h3>
-            <span class="old-price">${parseFloat(produit.price).toFixed(2)} €</span>
-            <span class="new-price">${parseFloat(produit.promo_price).toFixed(2)} €</span>
-            <button onclick="ajouterAuPanier('${produit.name.replace(/'/g, "\\'")}', ${produit.promo_price}, ${produit.id})">Ajouter au panier</button>
-          `;
+        <img src="${produit.image}" alt="${produit.name}">
+        <h3>${produit.name}</h3>
+        <span class="old-price">${parseFloat(produit.price).toFixed(2)} €</span>
+        <span class="new-price">${parseFloat(produit.promo_price).toFixed(2)} €</span>
+        <button onclick="ajouterAuPanier('${produit.name.replace(/'/g, "\\'")}', ${produit.promo_price}, ${produit.id})">Ajouter au panier</button>
+      `;
       container.appendChild(div);
     });
 }
 
-// Rediriger vers la page de commande
+// Rediriger vers la page commande
 function redirigerCommande() {
   const token = localStorage.getItem('access');
   if (!token) {

@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -9,140 +9,42 @@
 </head>
 <script src="assets/js/navbar.js"></script>
 <body>
-  <h2>Mon Panier</h2>
-  <div class="cart-container" id="contenu-panier">
-    <p style="text-align:center; color:#ccc; font-style:italic;">Chargement du panier...</p>
-  </div>
-
-  <div style="text-align:center; margin: 2rem;">
-    <button onclick="viderPanier()" style="background-color:#ff4c4c; color:#fff; border:none; padding:0.6rem 1.2rem; border-radius:4px; cursor:pointer; font-weight:bold;">Vider le panier</button>
-  </div>
-
-  <script src="assets/js/footer.js"></script>
   <script>
-    async function verifierConnexionEtChargerPanier() {
-      const token = localStorage.getItem('access');
-      if (!token) {
-        alert("Vous devez être connecté pour accéder à votre panier.");
-        window.location.href = "compte.html";
-        return;
-      }
-
-      try {
-        // Vérifie que le token est toujours valide
-        const resp = await fetch('http://localhost:8000/api/auth/me/', {
-          headers: { 'Authorization': 'Bearer ' + token }
-        });
-
-        if (!resp.ok) {
-          alert("Session expirée. Veuillez vous reconnecter.");
-          window.location.href = "compte.html";
-          return;
-        }
-
-        const user = await resp.json();
-        afficherPanierUtilisateur(token); // charge le panier une fois le token validé
-      } catch (e) {
-        alert("Erreur lors de la vérification. Veuillez vous reconnecter.");
-        window.location.href = "compte.html";
-      }
+    const token = localStorage.getItem('access');
+    if (!token) {
+      window.location.href = "compte.html";
     }
-
-    async function afficherPanierUtilisateur(token) {
-      try {
-        const response = await fetch('http://localhost:8000/api/panier/', {
-          headers: {
-            'Authorization': 'Bearer ' + token
-          }
-        });
-
-        const panier = await response.json();
-        const conteneur = document.getElementById("contenu-panier");
-        conteneur.innerHTML = "";
-
-        if (panier.length === 0) {
-          conteneur.innerHTML = '<p style="text-align:center; color:#ccc; font-style:italic;">Votre panier est vide.</p>';
-          return;
-        }
-
-        let total = 0;
-        panier.forEach((item, index) => {
-          total += item.product.price * item.quantity;
-
-          const ligne = document.createElement("div");
-          ligne.className = "cart-item";
-          ligne.innerHTML = `
-            <div>
-              <h4>${item.product.name}</h4>
-              <p>${item.product.price.toFixed(2)} € x ${item.quantity}</p>
-            </div>
-            <button onclick="supprimerDuPanier(${item.id})">Supprimer</button>
-          `;
-          conteneur.appendChild(ligne);
-        });
-
-        const resume = document.createElement("div");
-        resume.className = "cart-summary";
-        resume.innerHTML = `
-          <strong>Total : ${total.toFixed(2)} €</strong><br>
-          <button class="checkout-btn">Passer la commande</button>
-        `;
-        conteneur.appendChild(resume);
-      } catch (err) {
-        alert("Erreur lors du chargement du panier.");
-        console.error(err);
-      }
-    }
-
-    async function supprimerDuPanier(itemId) {
-      const token = localStorage.getItem('access');
-      if (!token) return;
-
-      if (!confirm("Supprimer cet article du panier ?")) return;
-
-      try {
-        const response = await fetch(`http://localhost:8000/api/panier/${itemId}/`, {
-          method: 'DELETE',
-          headers: {
-            'Authorization': 'Bearer ' + token
-          }
-        });
-
-        if (response.ok) {
-          afficherPanierUtilisateur(token); // recharge le panier
-        } else {
-          alert("Erreur lors de la suppression.");
-        }
-      } catch (e) {
-        alert("Erreur réseau.");
-      }
-    }
-
-    async function viderPanier() {
-      const token = localStorage.getItem('access');
-      if (!token) return;
-
-      if (!confirm("Voulez-vous vraiment vider le panier ?")) return;
-
-      try {
-        const response = await fetch('http://localhost:8000/api/panier/vider/', {
-          method: 'POST',
-          headers: {
-            'Authorization': 'Bearer ' + token
-          }
-        });
-
-        if (response.ok) {
-          afficherPanierUtilisateur(token);
-        } else {
-          alert("Erreur lors du vidage du panier.");
-        }
-      } catch (e) {
-        alert("Erreur réseau.");
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', verifierConnexionEtChargerPanier);
   </script>
+
+  <div id="panier-section">
+    <h2>Mon Panier</h2>
+    <div class="cart-container" id="contenu-panier">
+      <p style="text-align:center; color:#ccc; font-style:italic;">Votre panier est vide.</p>
+    </div>
+
+    <div style="text-align:center; margin: 2rem;">
+      <button onclick="viderPanier()" style="background-color:#ff4c4c; color:#fff; border:none; padding:0.6rem 1.2rem; border-radius:4px; cursor:pointer; font-weight:bold;">Vider le panier</button>
+    </div>
+  </div>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    if (typeof afficherPanier === 'function') {
+      const panier = JSON.parse(localStorage.getItem("panier")) || [];
+      const conteneur = document.getElementById("contenu-panier");
+      if (panier.length > 0) {
+        conteneur.innerHTML = "";
+        afficherPanier();
+      }
+    }
+
+    function viderPanier() {
+      if (confirm("Voulez-vous vraiment vider votre panier ?")) {
+        localStorage.removeItem("panier");
+        location.reload();
+      }
+    }
+  </script>
+  <script src="assets/js/footer.js"></script>
 </body>
 </html>
