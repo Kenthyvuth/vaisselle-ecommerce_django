@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Product, Order, OrderItem, Contact
+from .models import Product, Order, OrderItem, Contact, UserProfile
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,18 +8,24 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
+    newsletter = serializers.BooleanField(write_only=True, required=False)
+
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'password')
+        fields = ('id', 'username', 'email', 'password', 'newsletter')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
+        newsletter = validated_data.pop('newsletter', False)
         user = User(
             username=validated_data['username'],
             email=validated_data['email']
         )
         user.set_password(validated_data['password'])
         user.save()
+        
+        # Crée le profil associé
+        UserProfile.objects.create(user=user, newsletter=newsletter)
         return user
 
 class OrderItemSerializer(serializers.ModelSerializer):

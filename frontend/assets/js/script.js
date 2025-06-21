@@ -86,6 +86,32 @@ function afficherPanier() {
     <button class="checkout-btn" onclick="redirigerCommande()">Valider la commande</button>
   `;
   container.appendChild(resume);
+
+  // Ajout du bouton newsletter si panier non vide
+  const btnNewsletter = document.createElement("button");
+  btnNewsletter.id = "btn-newsletter";
+  btnNewsletter.className = "reminder-btn";
+  btnNewsletter.textContent = "Me rappeler de valider mon panier";
+  // btnNewsletter.style.margin = "1rem auto";
+  // btnNewsletter.style.display = "block";
+  btnNewsletter.onclick = async function() {
+    const token = localStorage.getItem('access');
+    if (!token) {
+      alert("Vous devez être connecté.");
+      window.location.href = "compte.html";
+      return;
+    }
+    const resp = await fetch('http://localhost:8000/api/newsletter/reminder/', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    if (resp.ok) {
+      alert("Un email de rappel a été envoyé sur votre boîte de messagerie.");
+    } else {
+      alert("Erreur lors de l'envoi du mail.");
+    }
+  };
+  container.appendChild(btnNewsletter);
 }
 
 // Envoyer la commande au backend Django
@@ -222,3 +248,21 @@ function redirigerCommande() {
   }
   window.location.href = "commande_details.html";
 }
+
+document.getElementById('btn-newsletter').onclick = async function() {
+  const token = localStorage.getItem('access');
+  if (!token) {
+    alert("Vous devez être connecté.");
+    window.location.href = "compte.html";
+    return;
+  }
+  const resp = await fetch('http://localhost:8000/api/newsletter/reminder/', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + token }
+  });
+  if (resp.ok) {
+    alert("Un email de rappel vous a été envoyé !");
+  } else {
+    alert("Erreur lors de l'envoi du mail.");
+  }
+};
