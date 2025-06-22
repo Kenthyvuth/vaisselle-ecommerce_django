@@ -101,14 +101,26 @@ function afficherPanier() {
       window.location.href = "compte.html";
       return;
     }
-    const resp = await fetch('http://localhost:8000/api/newsletter/reminder/', {
-      method: 'POST',
-      headers: { 'Authorization': 'Bearer ' + token }
-    });
-    if (resp.ok) {
-      alert("Un email de rappel a été envoyé sur votre boîte de messagerie.");
-    } else {
-      alert("Erreur lors de l'envoi du mail.");
+    const isSubscribed = localStorage.getItem('newsletter');
+    if (isSubscribed === 'true') {
+      // Récupère le panier depuis le localStorage
+      const panier = JSON.parse(localStorage.getItem("panier") || "[]");
+      const resp = await fetch('http://localhost:8000/api/newsletter/reminder/', {
+        method: 'POST',
+        headers: { 
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ panier })
+      });
+      if (resp.ok) {
+        alert("Un email de rappel a été envoyé sur votre boîte de messagerie.");
+      } else {
+        alert("Erreur lors de l'envoi du mail.");
+      }
+    }
+    else {
+      alert("Vous devez d'abord vous abonner à la newsletter. Allez dans votre profil pour activer les alertes.");
     }
   };
   container.appendChild(btnNewsletter);

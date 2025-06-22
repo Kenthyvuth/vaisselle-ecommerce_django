@@ -68,17 +68,19 @@
     const username = this.querySelector('input[name="username"]').value;
     const email = this.querySelector('input[name="email"]').value;
     const password = this.querySelector('input[name="password"]').value;
+    const newsletter = this.querySelector('input[name="newsletter"]').checked;
 
     try {
       const response = await fetch('http://localhost:8000/api/auth/register/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: username, email, password })
+        body: JSON.stringify({ username: username, email, password, newsletter })
       });
       if (response.ok) {
         alert('Inscription réussie ! Connectez-vous.');
       } else {
-        alert('Erreur lors de l\'inscription.');
+        detail = await response.json();
+        alert(detail.username ? detail.username : 'Erreur lors de l’inscription.');
       }
     } catch (e) {
       alert('Erreur réseau.');

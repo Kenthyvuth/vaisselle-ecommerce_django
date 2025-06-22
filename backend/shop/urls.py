@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from .views import RegisterView, ProductList, ProductDetail, OrderList, ContactCreate, MeView, NewsletterReminderView
+from .views import RegisterView, ProductList, ProductDetail, OrderList, ContactCreate, MeView, NewsletterReminderView, NewsletterToggleView
 
 urlpatterns = [
     path('auth/register/', RegisterView.as_view()),
@@ -12,4 +12,5 @@ urlpatterns = [
     path('contact/', ContactCreate.as_view()),
     path('auth/me/', MeView.as_view()),
     path('newsletter/reminder/', NewsletterReminderView.as_view(), name='newsletter-reminder'),
+    path('auth/newsletter/', NewsletterToggleView.as_view()),
 ]

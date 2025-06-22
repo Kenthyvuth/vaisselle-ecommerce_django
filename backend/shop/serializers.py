@@ -32,7 +32,8 @@ class UserSerializer(serializers.ModelSerializer):
         UserProfile.objects.create(user=user, newsletter=newsletter)
 
         # Envoi du mail de promotions
-        threading.Thread(target=self.send_email_promotions, args=(user,)).start()
+        if newsletter is True:
+            threading.Thread(target=self.send_email_promotions, args=(user,)).start()
         return user
 
     def send_email_promotions(self, user):

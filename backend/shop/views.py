@@ -38,12 +38,14 @@ class MeView(APIView):
 
     def get(self, request):
         user = request.user
+        user_profile = user.userprofile
         return Response({
             "id": user.id,
             "username": user.username,
             "email": user.email,
             "first_name": user.first_name,
             "last_name": user.last_name,
+            "newsletter": user_profile.newsletter,
         })
 
 class NewsletterReminderView(APIView):
@@ -51,14 +53,44 @@ class NewsletterReminderView(APIView):
 
     def post(self, request):
         user = request.user
-        email = user.email
-        if not email:
-            return Response({'error': 'Aucune adresse email trouvée.'}, status=400)
-        send_mail(
-            subject="N'oubliez pas de valider votre panier !",
-            message=f"Bonjour {user.username},\n\nVous avez des articles dans votre panier sur Classy Dishes. Profitez-en avant qu'ils ne disparaissent !\n\nÀ bientôt sur Classy Dishes.".format(user.username),
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[email],
-            fail_silently=False,
-        )
-        return Response({'success': 'Email envoyé.'})
+        user_profile = user.userprofile
+        if user_profile.newsletter:
+            email = user.email
+            if not email:
+                return Response({'error': 'Aucune adresse email trouvée.'}, status=400)
+            panier = request.data.get('panier', [])
+            if panier:
+                liste = "\n".join(
+                    f"- {item.get('nom', 'Produit')} x{item.get('quantite', 1)} à {item.get('prix', 0):.2f} €"
+                    for item in panier
+                )
+                message = (
+                    f"Bonjour {user.username},\n\n"
+                    "Vous avez des articles dans votre panier sur Classy Dishes :\n\n"
+                    f"{liste}\n\n"
+                    "Profitez-en avant qu'ils ne disparaissent !\n\nÀ bientôt sur Classy Dishes."
+                )
+            else:
+                message = (
+                    f"Bonjour {user.username},\n\n"
+                    "Vous avez des articles dans votre panier sur Classy Dishes. Profitez-en avant qu'ils ne disparaissent !\n\nÀ bientôt sur Classy Dishes."
+                )
+            send_mail(
+                subject="N'oubliez pas de valider votre panier !",
+                message=message,
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=[email],
+                fail_silently=False,
+            )
+            return Response({'success': 'Email envoyé.'})
+        else:
+            return Response({'error': 'Vous n\'êtes pas inscrit à la newsletter.'}, status=400)
+
+class NewsletterToggleView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        profile = request.user.userprofile
+        profile.newsletter = request.data.get('newsletter', False)
+        profile.save()
+        return Response({'newsletter': profile.newsletter})

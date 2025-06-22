@@ -34,7 +34,12 @@
       const user = await userResp.json();
       document.getElementById('user-info').innerHTML = `
         <strong>Nom d'utilisateur :</strong> ${user.username}<br>
-        <strong>Email :</strong> ${user.email}
+        <strong>Email :</strong> ${user.email}<br>
+        <label style="display:inline-flex;align-items:center;gap:0.5em;margin-top:1em;">
+          <input type="checkbox" id="newsletter-toggle" ${user.newsletter ? 'checked' : ''} style="accent-color:#d4af37;">
+          Recevoir la newsletter
+        </label>
+        <span id="newsletter-status" style="margin-left:1em;color:#d4af37;"></span>
       `;
 
       // Récupérer commandes
@@ -62,6 +67,29 @@
         });
         html += '</ul>';
         document.getElementById('orders').innerHTML = html;
+      }
+
+      const toggle = document.getElementById('newsletter-toggle');
+      if (toggle) {
+        toggle.addEventListener('change', async function() {
+          const resp = await fetch('http://localhost:8000/api/auth/newsletter/', {
+            method: 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + token,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ newsletter: toggle.checked })
+          });
+          const status = document.getElementById('newsletter-status');
+          if (resp.ok) {
+            status.textContent = toggle.checked ? "Newsletter activée" : "Newsletter désactivée";
+            localStorage.setItem('newsletter', toggle.checked);
+          } else {
+            status.textContent = "Erreur lors de la modification";
+            toggle.checked = !toggle.checked; // revert
+          }
+          setTimeout(() => { status.textContent = ""; }, 2500);
+        });
       }
     }
     document.addEventListener('DOMContentLoaded', chargerProfil);
