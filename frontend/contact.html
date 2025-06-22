@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,23 +9,50 @@
   <link rel="stylesheet" href="assets/css/contact.css">
 </head>
 <script src="assets/js/navbar.js"></script>
+
 <body>
   <section>
     <h2>Contactez-nous</h2>
     <form class="contact-form" action="#" method="post">
       <label for="name">Nom :</label>
       <input type="text" id="name" name="name" required>
-      
+
       <label for="email">Email :</label>
       <input type="email" id="email" name="email" required>
-      
+
       <label for="message">Message :</label>
       <textarea id="message" name="message" rows="5" required></textarea>
-      
+
       <button type="submit">Envoyer</button>
     </form>
   </section>
-  <script src="assets/js/script.js"></script>
+  <script>
+    document.querySelector('.contact-form').onsubmit = async function (e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!name || !email || !message) {
+        alert("Tous les champs sont obligatoires.");
+        return;
+      }
+
+      const resp = await fetch('http://localhost:8000/api/contact/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+      });
+
+      if (resp.ok) {
+        alert("Votre message a bien été envoyé !");
+        document.querySelector('.contact-form').reset();
+      } else {
+        alert("Erreur lors de l'envoi du message.");
+      }
+    };
+  </script>
   <script src="assets/js/footer.js"></script>
 </body>
+
 </html>

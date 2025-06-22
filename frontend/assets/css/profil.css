@@ -63,6 +63,13 @@ h3 {
   font-size: 0.98rem;
 }
 
+#orders p.no-command {
+  text-align: center;
+  margin: 0 0 2em 0;
+  color: #aaa;
+  font-style: italic;
+}
+
 @media (max-width: 600px) {
   #user-info, #orders li {
     padding: 1rem;

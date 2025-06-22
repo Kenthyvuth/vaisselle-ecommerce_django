@@ -60,8 +60,7 @@
         </tfoot>
       </table>`;
       document.getElementById('recapitulatif').innerHTML = html;
-      // Nettoyage du localStorage si tu veux
-      // localStorage.removeItem('confirmation_commande');
+      localStorage.removeItem('confirmation_commande');
     }
     document.addEventListener('DOMContentLoaded', afficherConfirmation);
   </script>

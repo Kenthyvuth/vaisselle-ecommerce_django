@@ -51,6 +51,11 @@ h2 {
   font-family: 'Playfair Display', serif;
 }
 
+a {
+  color: #d4af37;
+  text-decoration: none;
+}
+
 .cart-container {
   max-width: 800px;
   margin: 0 auto;

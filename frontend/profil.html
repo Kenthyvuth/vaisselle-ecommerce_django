@@ -37,7 +37,7 @@
         <strong>Email :</strong> ${user.email}<br>
         <label style="display:inline-flex;align-items:center;gap:0.5em;margin-top:1em;">
           <input type="checkbox" id="newsletter-toggle" ${user.newsletter ? 'checked' : ''} style="accent-color:#d4af37;">
-          Recevoir la newsletter
+          Recevoir des alertes et offres par email
         </label>
         <span id="newsletter-status" style="margin-left:1em;color:#d4af37;"></span>
       `;
@@ -50,7 +50,7 @@
       // Trie du plus récent au plus ancien
       orders.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
       if (orders.length === 0) {
-        document.getElementById('orders').innerHTML = "<em>Aucune commande trouvée.</em>";
+        document.getElementById('orders').innerHTML = `<p class="no-command">Aucune commande trouvée.</span>`;
       } else {
         let html = '<ul style="list-style:none;padding:0;">';
         orders.forEach(order => {

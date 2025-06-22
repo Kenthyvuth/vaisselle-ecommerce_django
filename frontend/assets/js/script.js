@@ -44,11 +44,13 @@ function ajouterUneUnite(idProduit) {
 function afficherPanier() {
   chargerPanier();
   const container = document.getElementById("contenu-panier");
+  const button = document.getElementById("btn-clear");
   container.innerHTML = "";
   let total = 0;
 
   if (panier.length === 0) {
     container.innerHTML = "<p style='text-align:center; color:#ccc; font-style:italic;'>Votre panier est vide.</p>";
+    button.style.display = "none";
     return;
   }
 
@@ -262,28 +264,3 @@ function redirigerCommande() {
   }
   window.location.href = "commande_details.html";
 }
-
-document.querySelector('.contact-form').onsubmit = async function(e) {
-  e.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const message = document.getElementById('message').value.trim();
-
-  if (!name || !email || !message) {
-    alert("Tous les champs sont obligatoires.");
-    return;
-  }
-
-  const resp = await fetch('http://localhost:8000/api/contact/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, email, message })
-  });
-
-  if (resp.ok) {
-    alert("Votre message a bien été envoyé !");
-    document.querySelector('.contact-form').reset();
-  } else {
-    alert("Erreur lors de l'envoi du message.");
-  }
-};

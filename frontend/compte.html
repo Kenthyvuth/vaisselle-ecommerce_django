@@ -51,10 +51,10 @@
         const data = await response.json();
         localStorage.setItem('access', data.access);
         localStorage.setItem('refresh', data.refresh);
-        alert('Connexion réussie !');
+        alert('Vous êtes connecté.');
         window.location.href = "index.html"; // Redirection vers la page d'accueil
       } else {
-        alert('Identifiants invalides.');
+        alert('Identifiants invalides. Vérifiez votre nom d’utilisateur et mot de passe.');
       }
     } catch (e) {
       alert('Erreur réseau.');
@@ -77,7 +77,7 @@
         body: JSON.stringify({ username: username, email, password, newsletter })
       });
       if (response.ok) {
-        alert('Inscription réussie ! Connectez-vous.');
+        alert('Inscription réussie ! Vous pouvez à présent vous authentifier.');
       } else {
         detail = await response.json();
         alert(detail.username ? detail.username : 'Erreur lors de l’inscription.');

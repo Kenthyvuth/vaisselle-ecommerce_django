@@ -19,11 +19,11 @@
   <div id="panier-section">
     <h2>Mon Panier</h2>
     <div class="cart-container" id="contenu-panier">
-      <p style="text-align:center; color:#ccc; font-style:italic;">Votre panier est vide.</p>
+      <p style="text-align:center; color:#ccc; font-style:italic;">Votre panier est vide. Consultez nos produits <a href="produits.html">ici</a>.</p>
     </div>
 
     <div style="text-align:center; margin: 2rem;">
-      <button onclick="viderPanier()" style="background-color:#ff4c4c; color:#fff; border:none; padding:0.6rem 1.2rem; border-radius:4px; cursor:pointer; font-weight:bold;">Vider le panier</button>
+      <button id="btn-clear" onclick="viderPanier()" style="background-color:#ff4c4c; color:#fff; border:none; padding:0.6rem 1.2rem; border-radius:4px; cursor:pointer; font-weight:bold;">Vider le panier</button>
     </div>
   </div>
 
@@ -32,9 +32,13 @@
     if (typeof afficherPanier === 'function') {
       const panier = JSON.parse(localStorage.getItem("panier")) || [];
       const conteneur = document.getElementById("contenu-panier");
+      const button = document.getElementById("btn-clear");
       if (panier.length > 0) {
         conteneur.innerHTML = "";
         afficherPanier();
+      }
+      else {
+        button.style.display = "none";
       }
     }
 
