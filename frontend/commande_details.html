@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <title>Finaliser ma commande</title>
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/panier.css">
+  <link rel="stylesheet" href="assets/css/commande_details.css">
 </head>
 <script src="assets/js/navbar.js"></script>
 <body>
   <div id="spinner-overlay" style="display:none;">
     <div class="spinner"></div>
   </div>
-  <section class="cart-container">
+  <section class="form-command">
     <h2>Informations de livraison</h2>
     <form id="commande-form">
       <label for="prenom">Prénom :</label>
@@ -39,11 +39,60 @@
     </form>
   </section>
   <script>
-    // Affiche le panier en résumé sur cette page (optionnel)
-    // ...
+    function validerChampsCommande() {
+      const prenom = document.getElementById('prenom').value.trim();
+      const nom = document.getElementById('nom').value.trim();
+      const adresse = document.getElementById('adresse').value.trim();
+      const ville = document.getElementById('ville').value.trim();
+      const cp = document.getElementById('cp').value.trim();
+      const pays = document.getElementById('pays').value.trim();
+      const cb = document.getElementById('cb').value.replace(/\s/g, '');
+      const exp = document.getElementById('exp').value.trim();
+      const cvv = document.getElementById('cvv').value.trim();
+
+      if (!prenom.match(/^[A-Za-zÀ-ÿ\- ]{2,}$/)) {
+        alert("Veuillez saisir un prénom valide.");
+        return false;
+      }
+      if (!nom.match(/^[A-Za-zÀ-ÿ\- ]{2,}$/)) {
+        alert("Veuillez saisir un nom valide.");
+        return false;
+      }
+      if (adresse.length < 5) {
+        alert("Veuillez saisir une adresse valide.");
+        return false;
+      }
+      if (ville.length < 2) {
+        alert("Veuillez saisir une ville valide.");
+        return false;
+      }
+      if (!cp.match(/^[A-Za-z0-9\- ]{4,10}$/)) {
+        alert("Veuillez saisir un code postal valide.");
+        return false;
+      }
+      if (pays.length < 2) {
+        alert("Veuillez saisir un pays valide.");
+        return false;
+      }
+      if (!cb.match(/^\d{16}$/)) {
+        alert("Le numéro de carte doit comporter 16 chiffres.");
+        return false;
+      }
+      if (!exp.match(/^(0[1-9]|1[0-2])\/\d{2}$/)) {
+        alert("La date d'expiration doit être au format MM/AA.");
+        return false;
+      }
+      if (!cvv.match(/^\d{3}$/)) {
+        alert("Le CVV doit comporter 3 chiffres.");
+        return false;
+      }
+      return true;
+    }
 
     document.getElementById('commande-form').onsubmit = async function(e) {
       e.preventDefault();
+      if (!validerChampsCommande()) return;
+
       // Affiche le spinner
       document.getElementById('spinner-overlay').style.display = 'flex';
 
