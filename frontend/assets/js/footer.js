@@ -4,7 +4,7 @@ function injectFooter() {
       <div class="footer-content">
         <p>&copy; 2025 Classy Dishes - Tous droits réservés.</p>
         <p>Contact : contact@classydishes.fr</p>
-        <p><a href="#">Politique de confidentialité</a> | <a href="#">Conditions générales de vente</a></p>
+        <p><a href="politique_confidentialite.html">Politique de confidentialité</a> | <a href="cgv.html">Conditions générales de vente</a></p>
         <div class="social-links">
           <a href="#">Facebook</a>
           <a href="#">Instagram</a>
