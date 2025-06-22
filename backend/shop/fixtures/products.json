@@ -8,7 +8,7 @@
       "price": 14.90,
       "promo_price": null,
       "stock": 50,
-      "image": "images/assiette.jpg.avif",
+      "image": "assets/images/assiette.avif",
       "category": ""
     }
   },
@@ -21,7 +21,7 @@
       "price": 11.90,
       "promo_price": null,
       "stock": 30,
-      "image": "images/bol.jpg.avif",
+      "image": "assets/images/bol.avif",
       "category": ""
     }
   },
@@ -34,7 +34,7 @@
       "price": 9.50,
       "promo_price": null,
       "stock": 40,
-      "image": "images/bol.jpg.avif",
+      "image": "assets/images/bolbleunuit.avif",
       "category": ""
     }
   },
@@ -47,7 +47,7 @@
       "price": 29.90,
       "promo_price": null,
       "stock": 20,
-      "image": "images/plat.jpg.avif",
+      "image": "assets/images/plat.avif",
       "category": ""
     }
   },
@@ -60,7 +60,7 @@
       "price": 8.50,
       "promo_price": null,
       "stock": 60,
-      "image": "images/verre.jpg.avif",
+      "image": "assets/images/verre.avif",
       "category": ""
     }
   },
@@ -73,7 +73,7 @@
       "price": 6.90,
       "promo_price": null,
       "stock": 80,
-      "image": "images/tassecafé.jpg.avif",
+      "image": "assets/images/tassecafé.avif",
       "category": ""
     }
   },
@@ -86,7 +86,7 @@
       "price": 29.99,
       "promo_price": 24.99,
       "stock": 15,
-      "image": "images/assiettes.jpg.avif",
+      "image": "assets/images/assiettes.avif",
       "category": ""
     }
   },
@@ -99,7 +99,7 @@
       "price": 15.00,
       "promo_price": 11.90,
       "stock": 10,
-      "image": "images/couvert.jpg.avif",
+      "image": "assets/images/couvert.avif",
       "category": ""
     }
   }
