@@ -248,21 +248,3 @@ function redirigerCommande() {
   }
   window.location.href = "commande_details.html";
 }
-
-document.getElementById('btn-newsletter').onclick = async function() {
-  const token = localStorage.getItem('access');
-  if (!token) {
-    alert("Vous devez être connecté.");
-    window.location.href = "compte.html";
-    return;
-  }
-  const resp = await fetch('http://localhost:8000/api/newsletter/reminder/', {
-    method: 'POST',
-    headers: { 'Authorization': 'Bearer ' + token }
-  });
-  if (resp.ok) {
-    alert("Un email de rappel vous a été envoyé !");
-  } else {
-    alert("Erreur lors de l'envoi du mail.");
-  }
-};
