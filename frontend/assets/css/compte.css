@@ -1,7 +1,7 @@
 body {
-    background-color: #1a1a1a;
+    background-color: #232323;
     color: #f3f3f3;
-    font-family: 'Georgia', serif;
+    font-family: Andale Mono, monospace;
     padding-top: 80px;
 }
 .navbar {
@@ -20,7 +20,7 @@ body {
 .navbar .logo {
     font-size: 1.6rem;
     font-weight: bold;
-    color: #d4af37;
+    color: #e7cfa0;
     font-family: 'Playfair Display', serif;
 }
 .navbar .nav-links {
@@ -35,12 +35,12 @@ body {
     transition: color 0.3s;
 }
 .navbar .nav-links a:hover {
-    color: #d4af37;
+    color: #e7cfa0;
 }
 h2 {
     text-align: center;
     font-size: 2rem;
-    color: #d4af37;
+    color: #e7cfa0;
     margin: 2rem 0;
     font-family: 'Playfair Display', serif;
 }
@@ -60,21 +60,21 @@ h2 {
 }
 .auth-form h3 {
     text-align: center;
-    color: #d4af37;
+    color: #e7cfa0;
     margin-bottom: 1rem;
 }
 .auth-form input {
     width: 100%;
     padding: 0.75rem;
     margin-bottom: 1rem;
-    background-color: #1a1a1a;
+    background-color: #232323;
     border: 1px solid #3e3e3e;
     border-radius: 4px;
     color: #f3f3f3;
 }
 .auth-form button {
-    background-color: #d4af37;
-    color: #1a1a1a;
+    background-color: #e7cfa0;
+    color: #232323;
     border: none;
     padding: 0.75rem;
     border-radius: 4px;
@@ -91,7 +91,7 @@ h2 {
     align-items: center;
     gap: 0.5em;
     font-size: 1rem;
-    color: #d4af37;
+    color: #e7cfa0;
     margin-bottom: 1rem;
     cursor: pointer;
     user-select: none;
@@ -101,9 +101,9 @@ h2 {
     appearance: none;
     width: 10px;
     height: 10px;
-    border: 2px solid #d4af37;
+    border: 2px solid #e7cfa0;
     border-radius: 4px;
-    background: #1a1a1a;
+    background: #232323;
     cursor: pointer;
     position: relative;
     transition: border-color 0.2s, background 0.2s;
@@ -112,8 +112,8 @@ h2 {
 }
 
 .auth-form input[type="checkbox"]:checked {
-    background: #d4af37;
-    border-color: #d4af37;
+    background: #e7cfa0;
+    border-color: #e7cfa0;
 }
 
 .auth-form input[type="checkbox"]:checked::after {
@@ -137,7 +137,7 @@ footer {
 }
 footer a,
 .social-links a {
-    color: #d4af37;
+    color: #e7cfa0;
     text-decoration: none;
 }
 footer a:hover {

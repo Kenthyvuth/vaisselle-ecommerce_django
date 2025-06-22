@@ -1,7 +1,7 @@
 body {
-  background-color: #1a1a1a;
+  background-color: #232323;
   color: #f3f3f3;
-  font-family: 'Georgia', serif;
+  font-family: Andale Mono, monospace;
   padding-top: 80px;
 }
 
@@ -22,7 +22,7 @@ body {
 .navbar .logo {
   font-size: 1.6rem;
   font-weight: bold;
-  color: #d4af37;
+  color: #e7cfa0;
   font-family: 'Playfair Display', serif;
 }
 
@@ -40,13 +40,13 @@ body {
 }
 
 .navbar .nav-links a:hover {
-  color: #d4af37;
+  color: #e7cfa0;
 }
 
 h2 {
   text-align: center;
   font-size: 2rem;
-  color: #d4af37;
+  color: #e7cfa0;
   margin: 2rem 0;
   font-family: 'Playfair Display', serif;
 }
@@ -80,7 +80,7 @@ h2 {
 
 .product-card h3 {
   min-height: 3.2em; /* Ajuste selon la taille de police, ici pour 2 lignes */
-  color: #d4af37;
+  color: #e7cfa0;
   margin: 0.5rem 0 0.2rem 0;
   font-size: 1.1rem;
   line-height: 1.6;
@@ -89,12 +89,12 @@ h2 {
 }
 
 .product-card span {
-  color: #d4af37;
+  color: #e7cfa0;
   margin: 0.5rem 0 0.2rem 0;
 }
 
 .product-card p {
-  color: #ccc;
+  color: #f3f3f3;
   font-size: 0.95rem;
   flex-grow: 1;
   margin-bottom: 1rem;
@@ -102,8 +102,8 @@ h2 {
 }
 
 .product-card button {
-  background-color: #d4af37;
-  color: #1a1a1a;
+  background-color: #e7cfa0;
+  color: #232323;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -127,15 +127,15 @@ h2 {
 }
 
 .product-card-footer span {
-  color: #d4af37;
+  color: #e7cfa0;
   font-weight: bold;
   font-size: 1.08rem;
   margin: 0;
 }
 
 .product-card-footer button {
-  background-color: #d4af37;
-  color: #1a1a1a;
+  background-color: #e7cfa0;
+  color: #232323;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -158,7 +158,7 @@ footer {
 
 footer a,
 .social-links a {
-  color: #d4af37;
+  color: #e7cfa0;
   text-decoration: none;
 }
 

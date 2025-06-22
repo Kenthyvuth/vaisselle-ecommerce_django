@@ -1,7 +1,7 @@
     body {
-      background-color: #1a1a1a;
+      background-color: #232323;
       color: #f3f3f3;
-      font-family: 'Georgia', serif;
+      font-family: Andale Mono, monospace;
       padding-top: 80px;
     }
 
@@ -22,7 +22,7 @@
     .navbar .logo {
       font-size: 1.6rem;
       font-weight: bold;
-      color: #d4af37;
+      color: #e7cfa0;
       font-family: 'Playfair Display', serif;
     }
 
@@ -40,13 +40,13 @@
     }
 
     .navbar .nav-links a:hover {
-      color: #d4af37;
+      color: #e7cfa0;
     }
 
     h2 {
       text-align: center;
       font-size: 2rem;
-      color: #d4af37;
+      color: #e7cfa0;
       margin: 2rem 0;
       font-family: 'Playfair Display', serif;
     }
@@ -77,7 +77,7 @@
     }
 
     .promo-card h3 {
-      color: #d4af37;
+      color: #e7cfa0;
       margin-bottom: 0.5rem;
     }
 
@@ -93,8 +93,8 @@
     }
 
     .promo-card button {
-      background-color: #d4af37;
-      color: #1a1a1a;
+      background-color: #e7cfa0;
+      color: #232323;
       padding: 0.5rem 1rem;
       border: none;
       border-radius: 4px;
@@ -111,7 +111,7 @@
 
     footer a,
     .social-links a {
-      color: #d4af37;
+      color: #e7cfa0;
       text-decoration: none;
     }
 

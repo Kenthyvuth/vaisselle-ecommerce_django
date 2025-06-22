@@ -1,7 +1,7 @@
 body {
-  background-color: #1a1a1a;
+  background-color: #232323;
   color: #f3f3f3;
-  font-family: 'Georgia', serif;
+  font-family: Andale Mono, monospace;
   padding-top: 80px;
 }
 
@@ -22,7 +22,7 @@ body {
 .navbar .logo {
   font-size: 1.6rem;
   font-weight: bold;
-  color: #d4af37;
+  color: #e7cfa0;
   font-family: 'Playfair Display', serif;
 }
 
@@ -40,7 +40,7 @@ body {
 }
 
 .navbar .nav-links a:hover {
-  color: #d4af37;
+  color: #e7cfa0;
 }
 
 section {
@@ -58,14 +58,14 @@ p {
 }
 
 h2 {
-  color: #d4af37;
+  color: #e7cfa0;
   text-align: center;
   margin-bottom: 1.5rem;
   font-family: 'Playfair Display', serif;
 }
 
 h3 {
-  color: #d4af37;
+  color: #e7cfa0;
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-family: 'Playfair Display', serif;
@@ -77,7 +77,7 @@ ul {
 }
 
 a {
-  color: #d4af37;
+  color: #e7cfa0;
   text-decoration: underline;
 }
 
@@ -94,7 +94,7 @@ footer {
 
 footer a,
 .social-links a {
-  color: #d4af37;
+  color: #e7cfa0;
   text-decoration: none;
 }
 

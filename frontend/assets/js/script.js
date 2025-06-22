@@ -49,7 +49,7 @@ function afficherPanier() {
   let total = 0;
 
   if (panier.length === 0) {
-    container.innerHTML = "<p style='text-align:center; color:#ccc; font-style:italic;'>Votre panier est vide.</p>";
+    container.innerHTML = "<p style='text-align:center; color:#f3f3f3; font-style:italic;'>Votre panier est vide.</p>";
     button.style.display = "none";
     return;
   }
@@ -85,7 +85,7 @@ function afficherPanier() {
   resume.className = "cart-summary";
   resume.innerHTML = `
     <p>Total : <strong>${total.toFixed(2)} €</strong></p>
-    <button class="checkout-btn" onclick="redirigerCommande()">Valider la commande</button>
+    <button class="checkout-btn" onclick="redirigerCommande()">Passer à la validation</button>
   `;
   container.appendChild(resume);
 

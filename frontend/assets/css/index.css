@@ -1,9 +1,10 @@
     body {
-      background-color: #1a1a1a;
+      background-color: #232323;
       color: #f3f3f3;
-      font-family: 'Georgia', serif;
+      font-family: Andale Mono, monospace;
       padding-top: 80px;
     }
+
     .navbar {
       position: fixed;
       top: 0;
@@ -15,49 +16,57 @@
       align-items: center;
       padding: 1rem 2rem;
       z-index: 1000;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
+
     .navbar .logo {
       font-size: 1.6rem;
       font-weight: bold;
-      color: #d4af37;
+      color: #e7cfa0;
       font-family: 'Playfair Display', serif;
     }
+
     .navbar .nav-links {
       list-style: none;
       display: flex;
       gap: 1.5rem;
     }
+
     .navbar .nav-links a {
       color: #f3f3f3;
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s;
     }
+
     .navbar .nav-links a:hover {
-      color: #d4af37;
+      color: #e7cfa0;
     }
+
     h2 {
       text-align: center;
       font-size: 2rem;
-      color: #d4af37;
+      color: #e7cfa0;
       margin: 2rem 0;
       font-family: 'Playfair Display', serif;
     }
+
     .section {
       padding: 2rem;
       text-align: center;
     }
+
     .intro {
       max-width: 800px;
       margin: 0 auto;
       font-size: 1.1rem;
-      color: #ccc;
+      color: #f3f3f3;
     }
+
     .cta-button {
       margin-top: 2rem;
-      background-color: #d4af37;
-      color: #1a1a1a;
+      background-color: #e7cfa0;
+      color: #232323;
       border: none;
       padding: 0.75rem 1.5rem;
       border-radius: 4px;
@@ -65,23 +74,28 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
+
     .cta-button:hover {
       background-color: #bfa46f;
     }
+
     footer {
       background-color: #0e0e0e;
       color: #aaa;
       padding: 2rem;
       text-align: center;
     }
+
     footer a,
     .social-links a {
-      color: #d4af37;
+      color: #e7cfa0;
       text-decoration: none;
     }
+
     footer a:hover {
       text-decoration: underline;
     }
+
     .social-links {
       margin-top: 1rem;
       display: flex;
