@@ -262,3 +262,28 @@ function redirigerCommande() {
   }
   window.location.href = "commande_details.html";
 }
+
+document.querySelector('.contact-form').onsubmit = async function(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  if (!name || !email || !message) {
+    alert("Tous les champs sont obligatoires.");
+    return;
+  }
+
+  const resp = await fetch('http://localhost:8000/api/contact/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, email, message })
+  });
+
+  if (resp.ok) {
+    alert("Votre message a bien été envoyé !");
+    document.querySelector('.contact-form').reset();
+  } else {
+    alert("Erreur lors de l'envoi du message.");
+  }
+};

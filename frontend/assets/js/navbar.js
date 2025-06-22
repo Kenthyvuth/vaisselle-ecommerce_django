@@ -19,7 +19,7 @@ function injectNavbar() {
   const isLoggedIn = !!localStorage.getItem('access');
 
   // Remove existing last nav item if present (for reloads)
-  if (navLinks.lastElementChild) navLinks.removeChild(navLinks.lastElementChild);
+  // if (navLinks.lastElementChild) navLinks.removeChild(navLinks.lastElementChild);
 
   if (isLoggedIn) {
     // Ajoute le lien vers le profil AVANT le bouton Déconnexion

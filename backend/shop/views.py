@@ -5,10 +5,11 @@ from .models import Product, Order, Contact
 from .serializers import ProductSerializer, UserSerializer, OrderSerializer, ContactSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.core.mail import send_mail
 
 import backend.settings as settings
+import threading
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -27,11 +28,6 @@ class OrderList(generics.ListCreateAPIView):
     serializer_class = OrderSerializer
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
-
-class ContactCreate(generics.CreateAPIView):
-    queryset = Contact.objects.all()
-    serializer_class = ContactSerializer
-    permission_classes = [permissions.AllowAny]
 
 class MeView(APIView):
     permission_classes = [IsAuthenticated]
@@ -94,3 +90,35 @@ class NewsletterToggleView(APIView):
         profile.newsletter = request.data.get('newsletter', False)
         profile.save()
         return Response({'newsletter': profile.newsletter})
+
+class ContactMailView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        name = request.data.get('name')
+        email = request.data.get('email')
+        message = request.data.get('message')
+
+        if not (name and email and message):
+            return Response({'error': 'Tous les champs sont obligatoires.'}, status=400)
+
+        # Enregistrement du contact dans la base de données
+        contact = Contact(name=name, email=email, message=message)
+        contact.save()
+
+        mail_message = (
+            f"Message reçu via le formulaire de contact Classy Dishes\n\n"
+            f"Nom : {name}\n"
+            f"Email : {email}\n"
+            f"Message :\n{message}\n"
+        )
+
+        threading.Thread(target=send_mail, kwargs={
+            'subject': "Nouveau message de contact Classy Dishes",
+            'message': mail_message,
+            'from_email': email,
+            'recipient_list': [settings.EMAIL_HOST_USER],
+            'fail_silently': False
+        }).start()
+
+        return Response({'success': 'Votre message a bien été envoyé.'})
