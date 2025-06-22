@@ -11,32 +11,38 @@
   <div id="spinner-overlay" style="display:none;">
     <div class="spinner"></div>
   </div>
-  <section class="form-command">
-    <h2>Informations de livraison</h2>
-    <form id="commande-form">
-      <label for="prenom">Prénom :</label>
-      <input type="text" id="prenom" name="prenom" required>
-      <label for="nom">Nom :</label>
-      <input type="text" id="nom" name="nom" required>
-      <label for="adresse">Adresse :</label>
-      <input type="text" id="adresse" name="adresse" required>
-      <label for="ville">Ville :</label>
-      <input type="text" id="ville" name="ville" required>
-      <label for="cp">Code postal :</label>
-      <input type="text" id="cp" name="cp" required>
-      <label for="pays">Pays :</label>
-      <input type="text" id="pays" name="pays" required>
+  <section class="commande-details-container">
+    <div class="form-command">
+      <h2>Informations de livraison</h2>
+      <form id="commande-form">
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom" required>
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required>
+        <label for="adresse">Adresse :</label>
+        <input type="text" id="adresse" name="adresse" required>
+        <label for="ville">Ville :</label>
+        <input type="text" id="ville" name="ville" required>
+        <label for="cp">Code postal :</label>
+        <input type="text" id="cp" name="cp" required>
+        <label for="pays">Pays :</label>
+        <input type="text" id="pays" name="pays" required>
 
-      <h3>Coordonnées bancaires</h3>
-      <label for="cb">Numéro de carte :</label>
-      <input type="text" id="cb" name="cb" maxlength="19" required>
-      <label for="exp">Date d'expiration :</label>
-      <input type="text" id="exp" name="exp" placeholder="MM/AA" maxlength="5" required>
-      <label for="cvv">CVV :</label>
-      <input type="text" id="cvv" name="cvv" maxlength="4" required>
+        <h3>Coordonnées bancaires</h3>
+        <label for="cb">Numéro de carte :</label>
+        <input type="text" id="cb" name="cb" placeholder="XXXX XXXX XXXX XXXX" maxlength="16" required>
+        <label for="exp">Date d'expiration :</label>
+        <input type="text" id="exp" name="exp" placeholder="MM/AA" maxlength="5" required>
+        <label for="cvv">CVV :</label>
+        <input type="text" id="cvv" name="cvv" placeholder="XXX" maxlength="4" required>
 
-      <button type="submit" class="checkout-btn">Valider</button>
-    </form>
+        <button type="submit" class="checkout-btn">Valider</button>
+      </form>
+    </div>
+    <aside class="recap-panier">
+      <h2>Votre panier</h2>
+      <div id="recap-produit"></div>
+    </aside>
   </section>
   <script>
     function validerChampsCommande() {
@@ -185,6 +191,26 @@
         document.getElementById('spinner-overlay').style.display = 'none';
       }
     };
+
+    function afficherRecapPanier() {
+      const recapDiv = document.getElementById('recap-produit');
+      const panier = JSON.parse(localStorage.getItem('panier') || "[]");
+      if (!panier.length) {
+        recapDiv.innerHTML = "<em>Votre panier est vide.</em>";
+        return;
+      }
+      let total = 0;
+      recapDiv.innerHTML = panier.map(item => {
+        const sousTotal = (parseFloat(item.prix) * (item.quantite || 1));
+        total += sousTotal;
+        return `<div class="recap-produit-item">
+          <span>${item.nom || item.name}</span>
+          <span>${item.quantite || 1} × ${parseFloat(item.prix).toFixed(2)} €</span>
+        </div>`;
+      }).join('');
+      recapDiv.innerHTML += `<div class="recap-total">Total : ${total.toFixed(2)} €</div>`;
+    }
+    document.addEventListener('DOMContentLoaded', afficherRecapPanier);
   </script>
   <script src="assets/js/footer.js"></script>
 </body>
