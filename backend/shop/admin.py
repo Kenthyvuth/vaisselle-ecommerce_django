@@ -19,8 +19,13 @@ class OrderAdmin(admin.ModelAdmin):
         return obj.pk
     command_id.short_description = 'Order ID'
 
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'created_at')
+    readonly_fields = ('name', 'email','created_at',)
+    search_fields = ('name', 'email')
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderItem, OrderItemAdmin)
-admin.site.register(Contact)
+admin.site.register(Contact, ContactAdmin)
 admin.site.register(UserProfile)
