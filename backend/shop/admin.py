@@ -24,8 +24,13 @@ class ContactAdmin(admin.ModelAdmin):
     readonly_fields = ('name', 'email','created_at',)
     search_fields = ('name', 'email')
 
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'newsletter')
+    readonly_fields = ('user', 'newsletter')
+    search_fields = ('user__username',)
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderItem, OrderItemAdmin)
 admin.site.register(Contact, ContactAdmin)
-admin.site.register(UserProfile)
+admin.site.register(UserProfile, UserProfileAdmin)
