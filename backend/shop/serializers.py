@@ -1,6 +1,10 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from .models import Product, Order, OrderItem, Contact, UserProfile
+
+import backend.settings as settings
+import threading
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,7 +30,31 @@ class UserSerializer(serializers.ModelSerializer):
         
         # Crée le profil associé
         UserProfile.objects.create(user=user, newsletter=newsletter)
+
+        # Envoi du mail de promotions
+        threading.Thread(target=self.send_email_promotions, args=(user,)).start()
         return user
+
+    def send_email_promotions(self, user):
+        produits_promo = Product.objects.filter(promo_price__isnull=False)
+        if produits_promo.exists() and user.email:
+            liste_promos = "\n".join([
+                f"- {p.name} : {p.promo_price:.2f} € au lieu de {p.price:.2f} €"
+                for p in produits_promo
+            ])
+            message = (
+                f"Bienvenue {user.username} sur Classy Dishes !\n\n"
+                "Voici les promotions en cours :\n\n"
+                f"{liste_promos}\n\n"
+                "Profitez-en vite sur notre site !"
+            )
+            send_mail(
+                subject=f"Hello {user.username} ! Découvrez nos promotions en cours",
+                message=message,
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=[user.email],
+                fail_silently=True,
+            )
 
 class OrderItemSerializer(serializers.ModelSerializer):
     product_name = serializers.CharField(source='product.name', read_only=True)
