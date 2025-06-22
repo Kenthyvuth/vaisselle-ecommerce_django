@@ -210,8 +210,10 @@ async function chargerProduits() {
         <img src="${produit.image}" alt="${produit.name}">
         <h3>${produit.name}</h3>
         <p>${produit.description}</p>
-        <span>${parseFloat(produit.price).toFixed(2)} €</span>
-        <button onclick="ajouterAuPanier('${produit.name.replace(/'/g, "\\'")}', ${produit.price}, ${produit.id})">Ajouter au panier</button>
+        <div class="product-card-footer">
+          <span>${parseFloat(produit.price).toFixed(2)} €</span>
+          <button onclick="ajouterAuPanier('${produit.name.replace(/'/g, "\\'")}', ${produit.price}, ${produit.id})">Ajouter au panier</button>
+        </div>
       `;
       container.appendChild(div);
     });
