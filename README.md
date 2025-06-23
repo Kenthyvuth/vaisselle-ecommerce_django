@@ -20,7 +20,7 @@ vaisselle-ecommerce/
 |    |__backend/
 |    |__shop/
 |    |
-|    |__.gitignore
+|    |__.env
 |    |__db.sqlite3
 |    |__manage.py
 |    |__requirements.txt
@@ -33,6 +33,7 @@ vaisselle-ecommerce/
 |    |__index.html
 |    |__...
 |
+|__.gitignore
 |__README.md
 ```
 
@@ -60,17 +61,21 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 4. Migrations for database
+### 4. Create .env file
+
+Will be used to store email credentials (Gmail)
+
+### 5. Migrations for database
 ```bash
 python manage.py migrate
 ```
 
-### 5. Load data in database (all product items)
+### 6. Load data in database (all product items)
 ```bash
 python manage.py loaddata shop/fixtures/products.json
 ```
 
-### 6. Admin : create superuser
+### 7. Admin : create superuser
 ```bash
 python manage.py createsuperuser
 ```
@@ -81,7 +86,7 @@ email : ad@min.com
 password : admin
 ```
 
-### 7. Run backend server
+### 8. Run backend server
 ```bash
 python manage.py runserver
 ```
