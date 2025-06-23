@@ -102,5 +102,70 @@
       "image": "assets/images/couvert.avif",
       "category": ""
     }
+  },
+  {
+    "model": "shop.product",
+    "pk": 9,
+    "fields": {
+      "name": "Carafe PURE CRISTAL",
+      "description": "Carafe en cristal soufflé bouche, idéale pour servir l'eau ou le vin avec élégance.",
+      "price": 34.90,
+      "promo_price": 29.90,
+      "stock": 22,
+      "image": "assets/images/carafecristal.avif",
+      "category": ""
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 10,
+    "fields": {
+      "name": "Saladier ARDOISE",
+      "description": "Saladier en grès finition ardoise, parfait pour salades et fruits.",
+      "price": 19.50,
+      "promo_price": null,
+      "stock": 35,
+      "image": "assets/images/saladierardoise.avif",
+      "category": ""
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 11,
+    "fields": {
+      "name": "Théière ÉLÉGANCE BLANCHE",
+      "description": "Théière en porcelaine blanche, design épuré pour une pause thé raffinée.",
+      "price": 27.90,
+      "promo_price": 20.00,
+      "stock": 18,
+      "image": "assets/images/theiereeleganceblanche.avif",
+      "category": ""
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 12,
+    "fields": {
+      "name": "Planche à découper BAMBOU",
+      "description": "Planche à découper en bambou naturel, résistante et écologique.",
+      "price": 12.90,
+      "promo_price": null,
+      "stock": 42,
+      "image": "assets/images/planchedecouperbambou.avif",
+      "category": ""
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 13,
+    "fields": {
+      "name": "Mug ARTISAN BLEU",
+      "description": "Mug en céramique artisanale bleu, grande contenance pour boissons chaudes.",
+      "price": 8.90,
+      "promo_price": null,
+      "stock": 55,
+      "image": "assets/images/mugartisanbleu.avif",
+      "category": ""
+    }
   }
 ]
