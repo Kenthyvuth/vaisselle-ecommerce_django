@@ -22,12 +22,12 @@ body {
 .navbar .logo {
   font-size: 1.6rem;
   font-weight: bold;
-  color: #e7cfa0;
+  color: #d4af37;
   font-family: 'Playfair Display', serif;
 }
 
 .navbar .logo a {
-  color: #e7cfa0;
+  color: #d4af37;
   text-decoration: none;
 }
 
@@ -45,7 +45,7 @@ body {
 }
 
 .navbar .nav-links a:hover {
-  color: #e7cfa0;
+  color: #d4af37;
 }
 
 section {
@@ -63,14 +63,14 @@ p {
 }
 
 h2 {
-  color: #e7cfa0;
+  color: #d4af37;
   text-align: center;
   margin-bottom: 1.5rem;
   font-family: 'Playfair Display', serif;
 }
 
 h3 {
-  color: #e7cfa0;
+  color: #d4af37;
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-family: 'Playfair Display', serif;
@@ -82,7 +82,7 @@ ul {
 }
 
 a {
-  color: #e7cfa0;
+  color: #d4af37;
   text-decoration: underline;
 }
 
@@ -99,7 +99,7 @@ footer {
 
 footer a,
 .social-links a {
-  color: #e7cfa0;
+  color: #d4af37;
   text-decoration: none;
 }
 

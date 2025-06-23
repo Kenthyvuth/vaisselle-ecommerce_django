@@ -22,12 +22,12 @@ body {
 .navbar .logo {
   font-size: 1.6rem;
   font-weight: bold;
-  color: #e7cfa0;
+  color: #d4af37;
   font-family: 'Playfair Display', serif;
 }
 
 .navbar .logo a {
-  color: #e7cfa0;
+  color: #d4af37;
   text-decoration: none;
 }
 
@@ -45,13 +45,13 @@ body {
 }
 
 .navbar .nav-links a:hover {
-  color: #e7cfa0;
+  color: #d4af37;
 }
 
 h2 {
   text-align: center;
   font-size: 2rem;
-  color: #e7cfa0;
+  color: #d4af37;
   margin: 2rem 0;
   font-family: 'Playfair Display', serif;
 }
@@ -82,7 +82,7 @@ h2 {
 }
 
 .promo-card h3 {
-  color: #e7cfa0;
+  color: #d4af37;
   margin-bottom: 0.5rem;
 }
 
@@ -98,7 +98,7 @@ h2 {
 }
 
 .promo-card button {
-  background-color: #e7cfa0;
+  background-color: #d4af37;
   color: #232323;
   padding: 0.5rem 1rem;
   border: none;
@@ -118,14 +118,14 @@ h2 {
 }
 
 .promo-card-footer span {
-  color: #e7cfa0;
+  color: #d4af37;
   font-weight: bold;
   font-size: 1.08rem;
   margin: 0;
 }
 
 .promo-card-footer button {
-  background-color: #e7cfa0;
+  background-color: #d4af37;
   color: #232323;
   border: none;
   padding: 0.5rem 1rem;
@@ -141,7 +141,7 @@ h2 {
 }
 
 .promo-card-footer button {
-  background-color: #e7cfa0;
+  background-color: #d4af37;
   color: #232323;
   border: none;
   padding: 0.5rem 1rem;
@@ -185,7 +185,7 @@ h2 {
 
 .promo-card h3 {
   min-height: 3.2em; /* Ajuste selon la taille de police, ici pour 2 lignes */
-  color: #e7cfa0;
+  color: #d4af37;
   margin: 0.5rem 0 0.2rem 0;
   font-size: 1.1rem;
   line-height: 1.6;
@@ -194,7 +194,7 @@ h2 {
 }
 
 .promo-card span {
-  color: #e7cfa0;
+  color: #d4af37;
   margin: 0.5rem 0 -0.8rem 0;
 }
 
@@ -207,7 +207,7 @@ h2 {
 }
 
 .promo-card button {
-  background-color: #e7cfa0;
+  background-color: #d4af37;
   color: #232323;
   border: none;
   padding: 0.5rem 1rem;
@@ -230,7 +230,7 @@ footer {
 
 footer a,
 .social-links a {
-  color: #e7cfa0;
+  color: #d4af37;
   text-decoration: none;
 }
 

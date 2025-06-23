@@ -1,3 +1,15 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   background-color: #232323;
   color: #f3f3f3;
@@ -22,12 +34,12 @@ body {
 .navbar .logo {
   font-size: 1.6rem;
   font-weight: bold;
-  color: #e7cfa0;
+  color: #d4af37;
   font-family: 'Playfair Display', serif;
 }
 
 .navbar .logo a {
-  color: #e7cfa0;
+  color: #d4af37;
   text-decoration: none;
 }
 
@@ -45,25 +57,26 @@ body {
 }
 
 .navbar .nav-links a:hover {
-  color: #e7cfa0;
+  color: #d4af37;
 }
 
 h2 {
   text-align: center;
   font-size: 2rem;
-  color: #e7cfa0;
+  color: #d4af37;
   margin: 2rem 0;
   font-family: 'Playfair Display', serif;
 }
 
 .highlight {
-  color: #e7cfa0;
+  color: #d4af37;
   font-weight: bold;
 }
 
 .section {
   padding: 2rem;
   text-align: center;
+  flex: 1 0 auto;
 }
 
 .intro {
@@ -75,7 +88,7 @@ h2 {
 
 .cta-button {
   margin-top: 2rem;
-  background-color: #e7cfa0;
+  background-color: #d4af37;
   color: #232323;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -94,11 +107,12 @@ footer {
   color: #aaa;
   padding: 2rem;
   text-align: center;
+  flex-shrink: 0;
 }
 
 footer a,
 .social-links a {
-  color: #e7cfa0;
+  color: #d4af37;
   text-decoration: none;
 }
 

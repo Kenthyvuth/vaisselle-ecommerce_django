@@ -22,12 +22,12 @@ body {
 .navbar .logo {
   font-size: 1.6rem;
   font-weight: bold;
-  color: #e7cfa0;
+  color: #d4af37;
   font-family: 'Playfair Display', serif;
 }
 
 .navbar .logo a {
-  color: #e7cfa0;
+  color: #d4af37;
   text-decoration: none;
 }
 
@@ -45,19 +45,19 @@ body {
 }
 
 .navbar .nav-links a:hover {
-  color: #e7cfa0;
+  color: #d4af37;
 }
 
 h2 {
   text-align: center;
   font-size: 2rem;
-  color: #e7cfa0;
+  color: #d4af37;
   margin: 2rem 0;
   font-family: 'Playfair Display', serif;
 }
 
 a {
-  color: #e7cfa0;
+  color: #d4af37;
   text-decoration: none;
 }
 
@@ -83,7 +83,7 @@ a {
 }
 
 .cart-item h4 {
-  color: #e7cfa0;
+  color: #d4af37;
   margin: 0;
 }
 
@@ -102,12 +102,12 @@ a {
 }
 
 .cart-summary strong {
-  color: #e7cfa0;
+  color: #d4af37;
   font-size: 1.2rem;
 }
 
 .checkout-btn {
-  background-color: #e7cfa0;
+  background-color: #d4af37;
   color: #232323;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -150,7 +150,7 @@ footer {
 
 footer a,
 .social-links a {
-  color: #e7cfa0;
+  color: #d4af37;
   text-decoration: none;
 }
 
@@ -180,7 +180,7 @@ footer a:hover {
 
 .spinner {
   border: 8px solid #f3f3f3;
-  border-top: 8px solid #e7cfa0;
+  border-top: 8px solid #d4af37;
   border-radius: 50%;
   width: 70px;
   height: 70px;

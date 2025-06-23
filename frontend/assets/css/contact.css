@@ -22,12 +22,12 @@ body {
 .navbar .logo {
   font-size: 1.6rem;
   font-weight: bold;
-  color: #e7cfa0;
+  color: #d4af37;
   font-family: 'Playfair Display', serif;
 }
 
 .navbar .logo a {
-  color: #e7cfa0;
+  color: #d4af37;
   text-decoration: none;
 }
 
@@ -45,13 +45,13 @@ s .navbar .nav-links {
 }
 
 .navbar .nav-links a:hover {
-  color: #e7cfa0;
+  color: #d4af37;
 }
 
 h2 {
   text-align: center;
   font-size: 2rem;
-  color: #e7cfa0;
+  color: #d4af37;
   margin: 2rem 0;
   font-family: 'Playfair Display', serif;
 }
@@ -83,7 +83,7 @@ h2 {
 }
 
 .contact-form button {
-  background-color: #e7cfa0;
+  background-color: #d4af37;
   color: #232323;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -105,7 +105,7 @@ footer {
 
 footer a,
 .social-links a {
-  color: #e7cfa0;
+  color: #d4af37;
   text-decoration: none;
 }
 
