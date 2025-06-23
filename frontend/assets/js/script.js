@@ -247,7 +247,7 @@ async function chargerPromotions() {
         <img src="${produit.image}" alt="${produit.name}">
         <h3>${produit.name}</h3>
         <p>${produit.description}</p>
-        <div class="product-card-footer">
+        <div class="promo-card-footer">
           <span class="old-price">${parseFloat(produit.price).toFixed(2)} €</span>
           <span class="new-price">${parseFloat(produit.promo_price).toFixed(2)} €</span>
           <button onclick="ajouterAuPanier('${produit.name.replace(/'/g, "\\'")}', ${produit.promo_price}, ${produit.id})">Ajouter au panier</button>
