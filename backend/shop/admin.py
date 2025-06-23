@@ -26,7 +26,6 @@ class ContactAdmin(admin.ModelAdmin):
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'newsletter')
-    readonly_fields = ('user', 'newsletter')
     search_fields = ('user__username',)
 
 admin.site.register(Product, ProductAdmin)

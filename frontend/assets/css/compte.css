@@ -4,6 +4,7 @@ body {
     font-family: Andale Mono, monospace;
     padding-top: 80px;
 }
+
 .navbar {
     position: fixed;
     top: 0;
@@ -15,28 +16,38 @@ body {
     align-items: center;
     padding: 1rem 2rem;
     z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
+
 .navbar .logo {
     font-size: 1.6rem;
     font-weight: bold;
     color: #e7cfa0;
     font-family: 'Playfair Display', serif;
 }
+
+.navbar .logo a {
+    color: #e7cfa0;
+    text-decoration: none;
+}
+
 .navbar .nav-links {
     list-style: none;
     display: flex;
     gap: 1.5rem;
 }
+
 .navbar .nav-links a {
     color: #f3f3f3;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
 }
+
 .navbar .nav-links a:hover {
     color: #e7cfa0;
 }
+
 h2 {
     text-align: center;
     font-size: 2rem;
@@ -44,6 +55,7 @@ h2 {
     margin: 2rem 0;
     font-family: 'Playfair Display', serif;
 }
+
 .auth-container {
     display: flex;
     flex-wrap: wrap;
@@ -51,6 +63,7 @@ h2 {
     gap: 2rem;
     padding: 2rem;
 }
+
 .auth-form {
     background-color: #2b2b2b;
     padding: 2rem;
@@ -58,11 +71,13 @@ h2 {
     box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
     width: 300px;
 }
+
 .auth-form h3 {
     text-align: center;
     color: #e7cfa0;
     margin-bottom: 1rem;
 }
+
 .auth-form input {
     width: 100%;
     padding: 0.75rem;
@@ -72,6 +87,7 @@ h2 {
     border-radius: 4px;
     color: #f3f3f3;
 }
+
 .auth-form button {
     background-color: #e7cfa0;
     color: #232323;
@@ -82,6 +98,7 @@ h2 {
     width: 100%;
     font-weight: bold;
 }
+
 .auth-form button:hover {
     background-color: #bfa46f;
 }
@@ -135,14 +152,17 @@ footer {
     padding: 2rem;
     text-align: center;
 }
+
 footer a,
 .social-links a {
     color: #e7cfa0;
     text-decoration: none;
 }
+
 footer a:hover {
     text-decoration: underline;
 }
+
 .social-links {
     margin-top: 1rem;
     display: flex;

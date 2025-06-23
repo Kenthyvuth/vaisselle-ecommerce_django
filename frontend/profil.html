@@ -35,9 +35,10 @@
       document.getElementById('user-info').innerHTML = `
         <strong>Nom d'utilisateur :</strong> ${user.username}<br>
         <strong>Email :</strong> ${user.email}<br>
-        <label style="display:inline-flex;align-items:center;gap:0.5em;margin-top:1em;">
-          <input type="checkbox" id="newsletter-toggle" ${user.newsletter ? 'checked' : ''} style="accent-color:#e7cfa0;">
-          Recevoir des alertes et offres par email
+        <label class="toggle-switch">
+          <input type="checkbox" id="newsletter-toggle" ${user.newsletter ? 'checked' : ''}>
+          <span class="slider"></span>
+          <span class="toggle-label">Recevoir des alertes et offres par email</span>
         </label>
         <span id="newsletter-status" style="margin-left:1em;color:#e7cfa0;"></span>
       `;

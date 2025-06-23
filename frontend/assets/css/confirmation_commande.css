@@ -5,13 +5,56 @@ body {
   padding-top: 80px;
 }
 
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #0e0e0e;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navbar .logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #e7cfa0;
+  font-family: 'Playfair Display', serif;
+}
+
+.navbar .logo a {
+  color: #e7cfa0;
+  text-decoration: none;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar .nav-links a {
+  color: #f3f3f3;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar .nav-links a:hover {
+  color: #e7cfa0;
+}
+
 .confirmation-container {
   max-width: 700px;
   margin: 2rem auto;
   background: #232323;
   border-radius: 10px;
   padding: 2rem 2.5rem;
-  box-shadow: 0 0 20px rgba(212,175,55,0.10);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.10);
 }
 
 h2 {
@@ -43,7 +86,8 @@ h3 {
   background: #232323;
 }
 
-.recap-table th, .recap-table td {
+.recap-table th,
+.recap-table td {
   border: 1px solid #444;
   padding: 0.7rem 0.5rem;
   text-align: center;
@@ -79,11 +123,37 @@ h3 {
   color: #fff;
 }
 
+footer {
+  background-color: #0e0e0e;
+  color: #aaa;
+  padding: 2rem;
+  text-align: center;
+}
+
+footer a,
+.social-links a {
+  color: #e7cfa0;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.social-links {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
 @media (max-width: 600px) {
   .confirmation-container {
     padding: 1rem 0.5rem;
   }
-  .recap-table th, .recap-table td {
+
+  .recap-table th,
+  .recap-table td {
     padding: 0.4rem 0.2rem;
     font-size: 0.95rem;
   }

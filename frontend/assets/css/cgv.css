@@ -26,6 +26,11 @@ body {
   font-family: 'Playfair Display', serif;
 }
 
+.navbar .logo a {
+  color: #e7cfa0;
+  text-decoration: none;
+}
+
 .navbar .nav-links {
   list-style: none;
   display: flex;

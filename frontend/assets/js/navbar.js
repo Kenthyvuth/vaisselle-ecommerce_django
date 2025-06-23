@@ -1,7 +1,7 @@
 function injectNavbar() {
   const navbarHTML = `
     <nav class="navbar">
-      <div class="logo">Classy Dishes</div>
+      <div class="logo"><a href="index.html">Classy Dishes</a></div>
       <ul class="nav-links" id="nav-links">
         <li><a href="index.html">Accueil</a></li>
         <li><a href="produits.html">Produits</a></li>
